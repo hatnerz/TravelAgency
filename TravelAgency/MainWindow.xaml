@@ -23,7 +23,7 @@
             <TextBlock>Головне меню</TextBlock>
             <Button Content="Перегляд" Style="{StaticResource MaterialDesignRaisedButton}"/>
             <Button Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand" Content="Обрати"/>
-            
+            <Button>Test</Button>
         </StackPanel>
     </Grid>
 </Window>
