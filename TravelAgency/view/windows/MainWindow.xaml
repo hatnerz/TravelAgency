@@ -1,0 +1,40 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravelAgency"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="TravelAgency.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="720" Width="1280" Loaded="Window_Loaded" MinWidth="550" MinHeight="430">
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="9*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
+            <TextBlock Grid.Column="1" Name="infoBlock" Style="{StaticResource mainText2}" VerticalAlignment="Center" Margin="0 0 15 0" TextAlignment="Right">Ви авторизувалися</TextBlock>
+            <Button Style="{StaticResource MaterialDesignIconButton}" Margin="0,0,15,0">
+                <Image Source="/images/profile_icon.png">
+                </Image>
+            </Button>
+        </StackPanel>
+        <TextBlock Name="timeBlock" Grid.Column="0" Style="{StaticResource mainText2}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0" TextAlignment="Center">00:00</TextBlock>
+        <StackPanel Grid.Column="0" Grid.Row ="1">
+            <TextBlock Style="{StaticResource mainText}" HorizontalAlignment="Center" Margin="0,20,0,0">Головне меню</TextBlock>
+            <StackPanel Name="menuButtons">
+                <Button Name="mainPageButton" Margin="5" Style="{StaticResource MaterialDesignRaisedButton}" Cursor="Hand" Content="Головна" Click="mainPageButton_Click" Tag="MainPage" />
+                <Button Name="toursPageButton" Margin="5" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand" Content="Тури" Click="toursPageButton_Click" Tag="Tours"/>
+                <Button Name="hotelsPageButton" Margin="5" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand" Content="Готелі"/>
+                <Button Name="clientsPageButton" Margin="5" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand" Content="Клієнти"/>
+                <Button Name="employeesPageButton" Margin="5" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand" Content="Співробітники" IsEnabled="False"/>
+                <Button Name="dataBasePageButton" Margin="5" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand" Content="База даних" IsEnabled="False" Click="dataBasePageButton_Click" Tag="DataBaseAdmin"/>
+            </StackPanel>
+        </StackPanel>
+        <Frame Grid.Row="1" Grid.Column="1" Name="mainFrame" NavigationUIVisibility="Hidden"></Frame>
+    </Grid>
+</Window>

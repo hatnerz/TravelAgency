@@ -13,5 +13,13 @@ namespace TravelAgency
     /// </summary>
     public partial class App : Application
     {
+        public static string GetConnectionStringByName(string name)
+        {
+            string returnValue = null;
+            ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings[name];
+            if (settings != null)
+                returnValue = settings.ConnectionString;
+            return returnValue;
+        }
     }
 }

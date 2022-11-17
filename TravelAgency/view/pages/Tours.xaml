@@ -1,0 +1,27 @@
+﻿<Page x:Class="TravelAgency.view.pages.Tours"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TravelAgency.view.pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="800"
+      Title="Tours">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Style="{StaticResource header1}" HorizontalAlignment="Center">Тури</TextBlock>
+        <StackPanel Margin="20" Grid.Row="1" VerticalAlignment="Center">
+            <TextBlock Margin="10" Style="{StaticResource mainText}" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap">
+                Інформація про існуючі тури
+            </TextBlock>
+            <DataGrid Name="toursDataGrid" Height="235" IsReadOnly="True"/>
+            <Button Name="addTourButton" Click="addTourButton_Click" Cursor="Hand">Додати новий тур</Button>
+            
+        </StackPanel>
+    </Grid>
+</Page>

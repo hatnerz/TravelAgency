@@ -25,8 +25,8 @@
             <RowDefinition Height="334*"/>
         </Grid.RowDefinitions>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="3">
-            <Label HorizontalAlignment="Center" Style="{StaticResource header1}">Туристичне агенство</Label>
-            <Label HorizontalAlignment="Center" Style="{StaticResource mainText}">Авторизація</Label>
+            <TextBlock HorizontalAlignment="Center" Style="{StaticResource header1}">Туристичне агенство</TextBlock>
+            <TextBlock HorizontalAlignment="Center" Style="{StaticResource mainText}">Авторизація</TextBlock>
         </StackPanel>
         <Border Grid.Row="1" Margin="0 0 0 25" Grid.Column="1" Style="{StaticResource block}">
             <Grid>
@@ -34,22 +34,24 @@
                     <RowDefinition Height="47*"/>
                     <RowDefinition Height="262*"/>
                 </Grid.RowDefinitions>
-                <Label VerticalAlignment="Center" Height="35" Grid.Row="0" Padding="15 0 0 0" Style="{StaticResource mainText}" BorderThickness="0,0,0,2" BorderBrush="{DynamicResource MaterialDesignDarkBackground}" SnapsToDevicePixels="True" VerticalContentAlignment="Center">Введіть дані користувача</Label>
+                <Border BorderThickness="0,0,0,2" BorderBrush="Black">
+                    <TextBlock VerticalAlignment="Center" Grid.Row="0" Margin="15 10 0 0" Style="{StaticResource mainText}" HorizontalAlignment="Left">Введіть дані користувача</TextBlock>
+                </Border>
                 <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="67*"/>
                         <ColumnDefinition Width="133*" MinWidth="200"/>
                     </Grid.ColumnDefinitions>
-                    <Label Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="0">Логін</Label>
-                    <TextBox Grid.Column="1" Grid.Row="0"/>
-                    <Label Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="1">Пароль</Label>
-                    <PasswordBox Grid.Column="1" Grid.Row="1"/>
-                    <Button Padding="0" Margin="15" Grid.Row="2" Grid.ColumnSpan="2">Увійти</Button>
+                    <TextBlock Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="0">Логін</TextBlock>
+                    <TextBox Name="loginBox" Grid.Column="1" Grid.Row="0"/>
+                    <TextBlock Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="1">Пароль</TextBlock>
+                    <PasswordBox Name="passwordBox" Grid.Column="1" Grid.Row="1"/>
+                    <Button Name="loginButton" Padding="0" Margin="15" Grid.Row="2" Grid.ColumnSpan="2" Click="loginButton_Click">Увійти</Button>
                 </Grid>
             </Grid>
         </Border>

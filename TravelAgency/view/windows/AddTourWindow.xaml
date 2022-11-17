@@ -1,0 +1,63 @@
+﻿<Window x:Class="TravelAgency.view.windows.AddTourWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravelAgency.view.windows"
+        mc:Ignorable="d"
+        Title="AddTourWindow" Height="450" Width="800">
+    <Grid Background="AliceBlue">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="113*"/>
+            <RowDefinition Height="334*"/>
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="3">
+            <TextBlock HorizontalAlignment="Center" Style="{StaticResource header1}">Додавання туру</TextBlock>
+        </StackPanel>
+        <Border Grid.Row="1" Margin="0 0 0 25" Grid.Column="1" Style="{StaticResource block}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="262*"/>
+                </Grid.RowDefinitions>
+                <Border BorderThickness="0,0,0,2" BorderBrush="Black">
+                    <TextBlock VerticalAlignment="Center" Grid.Row="0" Margin="15 10 0 0" Style="{StaticResource mainText}" HorizontalAlignment="Left">Введіть дані про тур</TextBlock>
+                </Border>
+                <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="0" TextAlignment="Right">Дата відправлення</TextBlock>
+                    <DatePicker Name="departureDateTextBox" Grid.Column="1" Grid.Row="0" Width="180" FirstDayOfWeek="Monday"/>
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="1" TextAlignment="Right">Дата вильоту додому</TextBlock>
+                    <DatePicker Name="arrivingDateTextBox" Grid.Column="1" Grid.Row="1" FirstDayOfWeek="Monday" SelectedDateFormat="Short"/>
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="2" TextAlignment="Right">Базова вартість туру</TextBlock>
+                    <TextBox Name="baseCostTextBox" Grid.Column="1" Grid.Row="2"/>
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="3" TextAlignment="Right">Базова вартість харчування</TextBlock>
+                    <TextBox Name="foodCostTextBox" Grid.Column="1" Grid.Row="3"/>
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="4" TextAlignment="Right">Базова вартість перельоту</TextBlock>
+                    <TextBox Name="flightCostTextBox" Grid.Column="1" Grid.Row="4"/>
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="5" TextAlignment="Right">Готель</TextBlock>
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="5" Name="hotelPicker" Grid.Column="1" Grid.Row="5" Content="Обрати"  VerticalAlignment="Center" ButtonBase.Click="hotelPicker_Click" Cursor="Hand"/>
+                    <Button Name="addTourButton" Padding="0" Margin="15" Grid.Row="6" Grid.ColumnSpan="2" Cursor="Hand" Click="addTourButton_Click">Додати тур</Button>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
