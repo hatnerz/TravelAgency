@@ -12,41 +12,47 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Xml.Linq;
 using TravelAgency.model;
 
 namespace TravelAgency.view.windows
 {
     /// <summary>
-    /// Логика взаимодействия для AddTourWindow.xaml
+    /// Логика взаимодействия для EditTourWindow.xaml
     /// </summary>
-    public partial class AddTourWindow : Window
+    public partial class EditTourWindow : Window
     {
-        public Hotel tourHotel = null;
-        public AddTourWindow()
+        Tour EditableTour;
+        public EditTourWindow(Tour editableTour)
         {
+            this.EditableTour = editableTour;
             InitializeComponent();
+            departureDateTextBox.Text = EditableTour.DepartureDate.ToString();
+            arrivingDateTextBox.Text = EditableTour.ArrivingDate.ToString();
+            baseCostTextBox.Text = EditableTour.BaseCost.ToString();
+            foodCostTextBox.Text = EditableTour.FoodCost.ToString();
+            flightCostTextBox.Text = EditableTour.FlightCost.ToString();
+            hotelPicker.Content = editableTour.Hotel.Name;
         }
 
-        private void hotelPicker_Click(object sender, object e)
+        private void hotelPicker_Click(object sender, RoutedEventArgs e)
         {
             HotelChooseWindow hotelChooseWindow = new HotelChooseWindow();
             hotelChooseWindow.ShowDialog();
-            if(hotelChooseWindow.ChoosenHotel != null)
+            if (hotelChooseWindow.ChoosenHotel != null)
             {
-                tourHotel = hotelChooseWindow.ChoosenHotel;
-                hotelPicker.Content = tourHotel.Name;
+                EditableTour.Hotel = hotelChooseWindow.ChoosenHotel;
+                hotelPicker.Content = EditableTour.Hotel.Name;
             }
         }
 
-        private void addTourButton_Click(object sender, RoutedEventArgs e)
+        private void changeTourButton_Click(object sender, RoutedEventArgs e)
         {
-            if(departureDateTextBox.Text == "" ||
+            if (departureDateTextBox.Text == "" ||
                 arrivingDateTextBox.Text == "" ||
                 baseCostTextBox.Text == "" ||
                 flightCostTextBox.Text == "" ||
                 foodCostTextBox.Text == "" ||
-                tourHotel == null)
+                EditableTour.Hotel == null)
             {
                 MessageBox.Show("Не всі поля заповнені");
             }
@@ -54,18 +60,18 @@ namespace TravelAgency.view.windows
             {
                 try
                 {
-                    string sqlExpression =
-                   "INSERT INTO tours (departure_date, arriving_date, base_cost, flight_cost, food_cost, hotel_id) " +
-                   "VALUES (@departureDate, @arrivingDate, @baseCost, @flightCost, @foodCost, @hotelId)";
+                   string sqlExpression =
+                   "UPDATE tours SET departure_date = @departureDate, arriving_date = @arrivingDate, base_cost = @baseCost, " +
+                   "flight_cost = @flightCost, food_cost = @foodCost, hotel_id = @hotelId WHERE tour_id = @tour_id";
                     using (SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection")))
                     {
                         connection.Open();
-                        DateTime departureDate = DateTime.Parse(arrivingDateTextBox.Text);
+                        DateTime departureDate = DateTime.Parse(departureDateTextBox.Text);
                         DateTime arrivingDate = DateTime.Parse(arrivingDateTextBox.Text);
                         decimal baseCost = Convert.ToDecimal(baseCostTextBox.Text);
                         decimal flightCost = Convert.ToDecimal(flightCostTextBox.Text);
                         decimal foodCost = Convert.ToDecimal(foodCostTextBox.Text);
-                        int hotelId = tourHotel.id;
+                        int hotelId = EditableTour.Hotel.id;
                         SqlCommand command = new SqlCommand(sqlExpression, connection);
                         command.Parameters.Add(new SqlParameter("@departureDate", departureDate));
                         command.Parameters.Add(new SqlParameter("@arrivingdate", arrivingDate));
@@ -73,11 +79,12 @@ namespace TravelAgency.view.windows
                         command.Parameters.Add(new SqlParameter("@flightCost", flightCost));
                         command.Parameters.Add(new SqlParameter("@foodCost", foodCost));
                         command.Parameters.Add(new SqlParameter("@hotelId", hotelId));
+                        command.Parameters.Add(new SqlParameter("@tour_id", EditableTour.Id));
                         command.ExecuteNonQuery();
                         this.Close();
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                 }

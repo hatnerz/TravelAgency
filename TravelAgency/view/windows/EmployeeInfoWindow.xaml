@@ -1,0 +1,81 @@
+﻿<Window x:Class="TravelAgency.view.windows.EmployeeInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravelAgency.view.windows"
+        mc:Ignorable="d"
+        Title="EmployeeInfoWindow" Height="570" Width="800">
+    <Grid Background="AliceBlue">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="113*"/>
+            <RowDefinition Height="334*"/>
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="3">
+            <TextBlock HorizontalAlignment="Center" Style="{StaticResource header1}">Інформація про співробітника</TextBlock>
+        </StackPanel>
+        <Border Grid.Row="1" Margin="0 0 0 25" Grid.Column="1" Style="{StaticResource block}">
+            <Grid x:Name="infoGrid">
+                <Grid.DataContext>
+                    <Binding Source="currentManager"/>
+                </Grid.DataContext>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="262*"/>
+                    <RowDefinition Height="47*"/>
+                </Grid.RowDefinitions>
+                <Border BorderThickness="0,0,0,2" BorderBrush="Black">
+                    <TextBlock Name="fullNameTextBlock" Text="{Binding GetFullName, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Row="0" Margin="15 10 0 0" Style="{StaticResource mainText}" HorizontalAlignment="Left"/>
+                </Border>
+                <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="0" TextAlignment="Right">Ідентифікатор</TextBlock>
+                    <TextBox Text="{Binding Id}" Name="idTextBox" Grid.Column="1" Grid.Row="0" Width="180" IsEnabled="False"/>
+
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="1" TextAlignment="Right">Прізвище</TextBlock>
+                    <TextBox Text="{Binding FirstName}" Name="firstNameTextBox" Grid.Column="1" Grid.Row="1" IsEnabled="False"/>
+
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="2" TextAlignment="Right">Ім'я</TextBlock>
+                    <TextBox Text="{Binding LastName}" Name="lastNameTextBox" Grid.Column="1" Grid.Row="2" IsEnabled="False"/>
+
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="3" TextAlignment="Right">По-батькові</TextBlock>
+                    <TextBox Text="{Binding PatronymicName}" Name="patronymicNameTextBox" Grid.Column="1" Grid.Row="3" IsEnabled="False"/>
+
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="4" TextAlignment="Right">Службовий номер</TextBlock>
+                    <TextBox Text="{Binding OfficePhone}" Name="officePhoneTextBox" Grid.Column="1" Grid.Row="4" IsEnabled="False"/>
+
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="5" TextAlignment="Right">Логін</TextBlock>
+                    <TextBox Text="{Binding login}" Name="loginTextBox" Grid.Column="1" Grid.Row="5" IsEnabled="False"/>
+
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="6" TextAlignment="Right">Пароль</TextBlock>
+                    <TextBox Text="{Binding password}" Name="passwordTextBox" Grid.Column="1" Grid.Row="6" IsEnabled="False"/>
+
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="7" TextAlignment="Right">Адміністратор</TextBlock>
+                    <CheckBox IsChecked="{Binding Admin}" Name="adminCheckBox" Grid.Row="7" Grid.Column="1" IsEnabled="False"></CheckBox>
+
+                </Grid>
+                <Button Name="changeInfoButton" Cursor="Hand" Grid.Row="2" Tag="change" Click="changeInfoButton_Click">Змінити інформацію</Button>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

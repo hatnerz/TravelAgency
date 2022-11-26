@@ -22,7 +22,7 @@ namespace TravelAgency
     /// </summary>
     public partial class MainWindow : Window
     {
-        public enum Pages { MainPage, DataBaseAdmin, Tours }
+        public enum Pages { MainPage, DataBaseAdmin, Tours, Staff }
         static Pages currentPage;
         private void pageNavigate(Pages page)
         {
@@ -53,6 +53,10 @@ namespace TravelAgency
                         changeButtons();
                         mainFrame.Navigate(new Tours());
                         break;
+                    case Pages.Staff:
+                        changeButtons();
+                        mainFrame.Navigate(new Staff());
+                        break;
                 }
                 
             }
@@ -67,7 +71,6 @@ namespace TravelAgency
             this.currentUser = currentUser;
             _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
             {
-                //timeBlock.Text = DateTime.Now.ToString("HH:mm");
                 timeBlock.Text = DateTime.Now.ToString("HH:mm:ss\ndd.MM.yyyy");
             }, Dispatcher);
         }
@@ -76,13 +79,16 @@ namespace TravelAgency
         {
             string status;
             if (currentUser.Admin == true)
+            {
+                dataBasePageButton.IsEnabled = true;
+                employeesPageButton.IsEnabled = true;
                 status = "адміністратор";
+            }
+                
             else
                 status = "менеджер";
             infoBlock.Text = "Вітаємо, " + currentUser.GetFullName + "!\nВи авторизувалися як " + status;
             mainFrame.Navigate(new MainPage());
-            if (currentUser.Admin == true)
-                dataBasePageButton.IsEnabled = true;
         }
 
         private void dataBasePageButton_Click(object sender, RoutedEventArgs e)
@@ -98,6 +104,11 @@ namespace TravelAgency
         private void toursPageButton_Click(object sender, object e)
         {
             pageNavigate(Pages.Tours);
+        }
+
+        private void employeesPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            pageNavigate(Pages.Staff);
         }
     }
 }

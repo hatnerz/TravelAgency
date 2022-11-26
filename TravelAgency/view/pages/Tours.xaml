@@ -8,20 +8,118 @@
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="800"
       Title="Tours">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
         <TextBlock Style="{StaticResource header1}" HorizontalAlignment="Center">Тури</TextBlock>
-        <StackPanel Margin="20" Grid.Row="1" VerticalAlignment="Center">
-            <TextBlock Margin="10" Style="{StaticResource mainText}" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap">
+        <StackPanel Margin="20" Grid.Row="1">
+            <TextBlock Margin="0 0 0 5" Style="{StaticResource mainText}" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap">
                 Інформація про існуючі тури
             </TextBlock>
-            <DataGrid Name="toursDataGrid" Height="235" IsReadOnly="True"/>
-            <Button Name="addTourButton" Click="addTourButton_Click" Cursor="Hand">Додати новий тур</Button>
-            
+            <TextBlock Margin="0 0 0 5" Style="{StaticResource mainText2}" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap">
+                Для отримання детальної інформації натисніть на тур подвійним кліком
+            </TextBlock>
+            <StackPanel>
+                <TextBlock Padding="5" Style="{StaticResource mainText}">Фільтрація та пошук</TextBlock>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Margin="5" Grid.Row="0" Grid.Column="0" Name="generalInfoFilter">
+                        <WrapPanel>
+                            <TextBlock Style="{StaticResource mainText2}">Країна</TextBlock>
+                            <TextBox Name="countryTextBox">COUNTRY</TextBox>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <TextBlock Style="{StaticResource mainText2}">Місто</TextBlock>
+                            <TextBox Name="cityTextBox">CITY</TextBox>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <TextBlock Style="{StaticResource mainText2}">Готель</TextBlock>
+                            <TextBox Name="hotelTextBox">HOTEL</TextBox>
+                        </WrapPanel>
+                    </StackPanel>
+
+                    <StackPanel Margin="5" Grid.Row="0" Grid.Column="1" Name="priceFilter">
+                        <WrapPanel>
+                            <TextBlock Style="{StaticResource mainText2}">Вартість туру</TextBlock>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <TextBlock Style="{StaticResource baseText}">Мінімальна</TextBlock>
+                            <TextBox Name="priceMinTextBox">MINPRICE</TextBox>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <TextBlock Style="{StaticResource baseText}">Максимальна</TextBlock>
+                            <TextBox Name="priceMaxTextBox">MAXPRICE</TextBox>
+                        </WrapPanel>
+                    </StackPanel>
+
+                    <StackPanel Margin="5" Grid.Row="0" Grid.Column="2" Name="departureDateFilter">
+                        <WrapPanel>
+                            <TextBlock Style="{StaticResource mainText2}">Дата вильоту</TextBlock>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <TextBlock Style="{StaticResource baseText}">Від</TextBlock>
+                            <DatePicker Name="departureMinTextBox"></DatePicker>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <TextBlock Style="{StaticResource baseText}">До</TextBlock>
+                            <DatePicker Name="departureMaxTextBox"></DatePicker>
+                        </WrapPanel>
+                    </StackPanel>
+
+                    <StackPanel Margin="5" Grid.Row="0" Grid.Column="3" Name="arrivingDateFilter">
+                        <WrapPanel>
+                            <TextBlock Style="{StaticResource mainText2}">Дата повернення</TextBlock>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <TextBlock Style="{StaticResource baseText}">Від</TextBlock>
+                            <DatePicker Name="arrivingMinTextBox"></DatePicker>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <TextBlock Style="{StaticResource baseText}">До</TextBlock>
+                            <DatePicker Name="arrivingMaxTextBox"></DatePicker>
+                        </WrapPanel>
+                    </StackPanel>
+                    <Button Name="searchButton" Margin="10" Grid.Row="1" Grid.Column="3" Click="searchButton_Click">Пошук</Button>
+                    <Button Name="clearFiltres" Margin="10" Grid.Row="1" Grid.Column="2">Очистити фільтри</Button>
+                </Grid>
+            </StackPanel>
+            <DataGrid Name="toursDataGrid" Height="277" IsReadOnly="True" AutoGenerateColumns="False" CurrentCellChanged="toursDataGrid_CurrentCellChanged" MouseDoubleClick="toursDataGrid_MouseDoubleClick" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Країна" Binding="{Binding country}"/>
+                    <DataGridTextColumn Header="Місто" Binding="{Binding city}"/>
+                    <DataGridTextColumn Header="Дата відправлення" Binding="{Binding departure_date}"/>
+                    <DataGridTextColumn Header="Дата відльоту додому" Binding="{Binding arriving_date}"/>
+                    <DataGridTextColumn Header="Базова вартість" Binding="{Binding base_cost}"/>
+                    <DataGridTextColumn Header="Вартість харчування" Binding="{Binding food_cost}"/>
+                    <DataGridTextColumn Header="Вартість перельоту" Binding="{Binding flight_cost}"/>
+                    <DataGridTextColumn Header="Готель" Binding="{Binding name}"/>
+
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Margin="5" Grid.Column="0" Name="addTourButton" Click="addTourButton_Click" Cursor="Hand">Додати новий тур</Button>
+                <Button Margin="5" Grid.Column="1" Name="editTourButton" Click="editTourButton_Click" Cursor="Hand">Змінити тур</Button>
+                <Button Margin="5" Grid.Column="2" Name="deleteTourButton" Click="deleteTourButton_Click" Cursor="Hand">Видалити тур</Button>
+
+            </Grid>
+            <TextBox Name="currentCell" Margin="5" HorizontalAlignment="Center">Поточна комірка</TextBox>
         </StackPanel>
     </Grid>
 </Page>

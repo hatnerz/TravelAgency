@@ -65,6 +65,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="model\Client.cs" />
+    <Compile Include="model\Trip.cs" />
+    <Compile Include="viewmodel\ClientViewModel.cs" />
+    <Compile Include="viewmodel\TourInfoViewModel.cs" />
+    <Compile Include="viewmodel\TripSettingsViewModel.cs" />
+    <Compile Include="viewmodel\ViewModelBase.cs" />
+    <Compile Include="view\pages\ChooseClient.xaml.cs">
+      <DependentUpon>ChooseClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\pages\TripSettings.xaml.cs">
+      <DependentUpon>TripSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\windows\ClientChooseWindow.xaml.cs">
+      <DependentUpon>ClientChooseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\windows\TourBooking.xaml.cs">
+      <DependentUpon>TourBooking.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\windows\TourInfo.xaml.cs">
+      <DependentUpon>TourInfo.xaml</DependentUpon>
+    </Compile>
+    <Page Include="view\pages\ChooseClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\pages\DataBaseAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -73,11 +98,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="view\pages\Staff.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\pages\Tours.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="view\pages\TripSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\windows\AddTourWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\windows\ClientChooseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\windows\EditTourWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\windows\EmployeeInfoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -98,17 +143,27 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="model\Hotel.cs" />
+    <Compile Include="model\Tour.cs" />
     <Compile Include="view\pages\DataBaseAdmin.xaml.cs">
       <DependentUpon>DataBaseAdmin.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\pages\Staff.xaml.cs">
+      <DependentUpon>Staff.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\pages\Tours.xaml.cs">
       <DependentUpon>Tours.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\windows\AddTourWindow.xaml.cs">
       <DependentUpon>AddTourWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\windows\EditTourWindow.xaml.cs">
+      <DependentUpon>EditTourWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\windows\EmployeeInfoWindow.xaml.cs">
+      <DependentUpon>EmployeeInfoWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\windows\HotelChooseWindow.xaml.cs">
       <DependentUpon>HotelChooseWindow.xaml</DependentUpon>
@@ -120,6 +175,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="view\windows\TourBooking.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\windows\TourInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="model\Manager.cs" />

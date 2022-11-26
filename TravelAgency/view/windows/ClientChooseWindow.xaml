@@ -1,0 +1,64 @@
+﻿<Window x:Class="TravelAgency.view.windows.ClientChooseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravelAgency.view.windows"
+        mc:Ignorable="d"
+        Title="ClientChooseWindow" Height="450" Width="800">
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="180*"/>
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="58" Width="400">
+            <TextBlock HorizontalAlignment="Center" Style="{StaticResource header1}">Вибір клієнта</TextBlock>
+            <TextBlock HorizontalAlignment="Center" Style="{StaticResource mainText}">Оберіть інсуючого клієнта зі списка</TextBlock>
+        </StackPanel>
+        <DockPanel Margin="20,0,20,0" Grid.Row="1" VerticalAlignment="Center">
+            <StackPanel DockPanel.Dock="Top">
+                <TextBlock Padding="0 5 0 5" Style="{StaticResource mainText}">Фільтрація та пошук</TextBlock>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <WrapPanel Grid.Column="0">
+                        <TextBlock Style="{StaticResource mainText2}">Прізвище</TextBlock>
+                        <TextBox Name="firstName" MinWidth="150"></TextBox>
+                    </WrapPanel>
+
+                    <WrapPanel  Grid.Column="1">
+                        <TextBlock Style="{StaticResource mainText2}">Ім'я</TextBlock>
+                        <TextBox Name="lastName" MinWidth="150"></TextBox>
+                    </WrapPanel>
+
+                    <WrapPanel  Grid.Column="2">
+                        <TextBlock Style="{StaticResource mainText2}">По-батькові</TextBlock>
+                        <TextBox Name="patronynicName" MinWidth="150"></TextBox>
+                    </WrapPanel>
+                    <Button Name="searchButton" Margin="10" Grid.Row="1" Grid.Column="2" Height="30">Пошук</Button>
+                    <Button Name="clearFiltres" Margin="10" Grid.Row="1" Grid.Column="1" Height="30">Очистити фільтри</Button>
+                </Grid>
+            </StackPanel>
+            <DataGrid DockPanel.Dock="Top" Name="clientsDataGrid" IsReadOnly="True" AutoGenerateColumns="False" MinWidth="300" MinHeight="150">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Прізвище" Binding="{Binding first_name}"/>
+                    <DataGridTextColumn Header="Ім'я" Binding="{Binding last_name}"/>
+                    <DataGridTextColumn Header="По-батькові" Binding="{Binding patronymic_name}"/>
+                    <DataGridTextColumn Header="Паспорт" Binding="{Binding passport}"/>
+                    <DataGridTextColumn Header="Номер телефону" Binding="{Binding phone}"/>
+                    <DataGridTextColumn Header="Електронна пошта" Binding="{Binding email}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button DockPanel.Dock="Bottom" Name="selectClientButton" Cursor="Hand" Click="selectClientButton_Click">Обрати клієнта</Button>
+
+        </DockPanel>
+    </Grid>
+</Window>

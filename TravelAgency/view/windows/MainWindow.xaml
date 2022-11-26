@@ -13,7 +13,7 @@
             <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="9*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
@@ -31,7 +31,7 @@
                 <Button Name="toursPageButton" Margin="5" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand" Content="Тури" Click="toursPageButton_Click" Tag="Tours"/>
                 <Button Name="hotelsPageButton" Margin="5" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand" Content="Готелі"/>
                 <Button Name="clientsPageButton" Margin="5" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand" Content="Клієнти"/>
-                <Button Name="employeesPageButton" Margin="5" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand" Content="Співробітники" IsEnabled="False"/>
+                <Button Name="employeesPageButton" Margin="5" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand" Content="Співробітники" IsEnabled="False" Click="employeesPageButton_Click" Tag="Staff"/>
                 <Button Name="dataBasePageButton" Margin="5" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand" Content="База даних" IsEnabled="False" Click="dataBasePageButton_Click" Tag="DataBaseAdmin"/>
             </StackPanel>
         </StackPanel>

@@ -1,0 +1,48 @@
+﻿<Window x:Class="TravelAgency.view.windows.TourInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravelAgency.view.windows"
+        mc:Ignorable="d"
+        Title="TourInfo" Height="600" Width="800">
+    <Grid Background="AliceBlue">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="113*"/>
+            <RowDefinition Height="334*"/>
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="3">
+            <TextBlock HorizontalAlignment="Center" Style="{StaticResource header1}">Інформація про тур</TextBlock>
+        </StackPanel>
+        <Border Grid.Row="1" Margin="0 0 0 25" Grid.Column="1" Style="{StaticResource block}">
+            <Grid Name="InfoDataGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="262*"/>
+                </Grid.RowDefinitions>
+                <Border BorderThickness="0,0,0,2" BorderBrush="Black">
+                    <TextBlock Text="{Binding RestHotel}" VerticalAlignment="Center" Grid.Row="0" Margin="15 10 0 0" Style="{StaticResource mainText}" HorizontalAlignment="Left"></TextBlock>
+                </Border>
+                <DockPanel Grid.Row="1" Margin="30,10,30,0">
+                    <TextBlock Style="{StaticResource baseText}" Text="{Binding Location}" Name="locationTextBlock" DockPanel.Dock="Top" Margin="5,5,0,5"></TextBlock>
+                    <Border Margin="0,10,0,10" DockPanel.Dock="Top" BorderBrush="Black" BorderThickness="1,0,0,0">
+                        <TextBlock Style="{StaticResource mainText2}" Text="{Binding Description}" Name="descriptionTextBlock" Grid.ColumnSpan="2" Grid.Row="1" TextWrapping="Wrap" TextAlignment="Justify" Margin="5,2,0,2">
+                        </TextBlock>
+                    </Border>
+                    <TextBlock Style="{StaticResource mainText2}" Text="{Binding Stars}" Name="starsTextBlock" DockPanel.Dock="Top" Margin="0,0,0,5" ></TextBlock>
+                    <TextBlock Style="{StaticResource mainText2}" Text="{Binding RoomNumber}" Name="roomNumberTextBlock" DockPanel.Dock="Top" Margin="0,0,0,5"></TextBlock>
+                    <TextBlock Style="{StaticResource mainText2}" DockPanel.Dock="Top" Margin="0,0,0,5">Послуги готелю: ___________</TextBlock>
+                    <TextBlock Style="{StaticResource mainText2}" Text="{Binding MinPrice}" Name="minPriceTextBlock" DockPanel.Dock="Top" Margin="0,0,0,5"></TextBlock>
+                    <TextBlock Style="{StaticResource mainText2}" Text="{Binding DepartureDate}" Name="departureDateTextBlock" DockPanel.Dock="Top" Margin="0,0,0,5"></TextBlock>
+                    <TextBlock Style="{StaticResource mainText2}" Text="{Binding ArrivingDate}" Name="arrivingDateTextBlock" DockPanel.Dock="Top" Margin="0,0,0,5"></TextBlock>
+                    <Button Margin="30 0 30 20" DockPanel.Dock="Bottom" Name="goBookingButton" Click="goBookingButton_Click" VerticalContentAlignment="Center" VerticalAlignment="Bottom" Cursor="Hand">Перейти до оформлення</Button>
+                </DockPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
