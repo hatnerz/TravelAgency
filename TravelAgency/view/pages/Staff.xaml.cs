@@ -15,6 +15,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TravelAgency.view.windows;
+using System.Text.RegularExpressions;
+using System.Threading;
+using TravelAgency.model;
 
 namespace TravelAgency.view.pages
 {
@@ -28,7 +31,10 @@ namespace TravelAgency.view.pages
         public void UpdataDataTable()
         {
             SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection"));
-            string command = "SELECT * FROM managers";
+            string command = "SELECT managers.manager_id,managers.login, managers.password, managers.first_name, managers.last_name, managers.patronymic_name, " +
+            "managers.admin, managers.office_phone, COUNT(clients.client_id) clients_count " +
+            "FROM managers LEFT OUTER JOIN clients on managers.manager_id = clients.manager_id GROUP BY managers.manager_id,managers.login, managers.password, managers.first_name, managers.last_name, managers.patronymic_name, " +
+            "managers.admin, managers.office_phone";
             connection.Open();
             oda = new SqlDataAdapter(command, connection);
             staffViewDataTable.Clear();

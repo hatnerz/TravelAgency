@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TravelAgency.model;
+using TravelAgency.DbAdapters;
 
 namespace TravelAgency.view.windows
 {
@@ -23,18 +24,13 @@ namespace TravelAgency.view.windows
     public partial class ClientChooseWindow : Window
     {
         public Client ChoosenClient;
+        DataTable clientsViewDataTable;
         public ClientChooseWindow()
         {
             InitializeComponent();
-            DataTable dt = new DataTable();
-            clientsDataGrid.ItemsSource = dt.AsEnumerable();
-            SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection"));
-            string command = "SELECT * FROM clients";
-            connection.Open();
-            SqlDataAdapter oda = new SqlDataAdapter(command, connection);
-            oda.Fill(dt);
-            clientsDataGrid.ItemsSource = dt.AsDataView();
-            connection.Close();
+            clientsViewDataTable = new DataTable();
+            clientsDataGrid.ItemsSource = clientsViewDataTable.AsDataView();
+            ClientsAdapter.FillClientsByManager((Manager)App.Current.Properties["currentUser"], clientsViewDataTable);
         }
 
         private void selectClientButton_Click(object sender, RoutedEventArgs e)
@@ -49,6 +45,12 @@ namespace TravelAgency.view.windows
             {
                 MessageBox.Show("Оберіть клієнта зі списку");
             }
+        }
+
+        private void searchButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClientsAdapter.FillClientByManagerWithFilters((Manager)App.Current.Properties["currentUser"], clientsViewDataTable,
+                firstName.Text, lastName.Text, patronymicName.Text);
         }
     }
 }

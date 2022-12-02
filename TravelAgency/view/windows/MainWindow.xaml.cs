@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using TravelAgency.view.pages;
+using TravelAgency.viewmodel;
 
 namespace TravelAgency
 {
@@ -22,7 +23,7 @@ namespace TravelAgency
     /// </summary>
     public partial class MainWindow : Window
     {
-        public enum Pages { MainPage, DataBaseAdmin, Tours, Staff }
+        public enum Pages { MainPage, DataBaseAdmin, Tours, Staff, Clients }
         static Pages currentPage;
         private void pageNavigate(Pages page)
         {
@@ -57,6 +58,10 @@ namespace TravelAgency
                         changeButtons();
                         mainFrame.Navigate(new Staff());
                         break;
+                    case Pages.Clients:
+                        changeButtons();
+                        mainFrame.Navigate(new Clients());
+                        break;
                 }
                 
             }
@@ -64,11 +69,15 @@ namespace TravelAgency
         }
 
         public Manager currentUser { private set; get; }
+        public ManagerViewModel ManagerViewModel;
         private DispatcherTimer _timer;
         public MainWindow(Manager currentUser)
         {
             InitializeComponent();
             this.currentUser = currentUser;
+            this.ManagerViewModel = new ManagerViewModel(currentUser);
+            mainGrid.DataContext = ManagerViewModel;
+            Application.Current.Properties.Add("currentUser", currentUser);
             _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
             {
                 timeBlock.Text = DateTime.Now.ToString("HH:mm:ss\ndd.MM.yyyy");
@@ -77,17 +86,11 @@ namespace TravelAgency
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            string status;
             if (currentUser.Admin == true)
             {
                 dataBasePageButton.IsEnabled = true;
                 employeesPageButton.IsEnabled = true;
-                status = "адміністратор";
             }
-                
-            else
-                status = "менеджер";
-            infoBlock.Text = "Вітаємо, " + currentUser.GetFullName + "!\nВи авторизувалися як " + status;
             mainFrame.Navigate(new MainPage());
         }
 
@@ -109,6 +112,11 @@ namespace TravelAgency
         private void employeesPageButton_Click(object sender, RoutedEventArgs e)
         {
             pageNavigate(Pages.Staff);
+        }
+
+        private void clientsPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            pageNavigate(Pages.Clients);
         }
     }
 }

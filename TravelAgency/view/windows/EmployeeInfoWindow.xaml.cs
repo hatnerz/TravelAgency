@@ -54,7 +54,7 @@ namespace TravelAgency.view.windows
 
             else
             {
-                changeInfoButton.Content = "Змінити дані";
+                changeInfoButton.Content = "Змінити інформацію";
                 firstNameTextBox.IsEnabled = false;
                 lastNameTextBox.IsEnabled = false;
                 patronymicNameTextBox.IsEnabled = false;

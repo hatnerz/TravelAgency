@@ -29,6 +29,7 @@
                     <DataGridTextColumn Header="По-батькові" Binding="{Binding patronymic_name}"/>
                     <DataGridTextColumn Header="Номер телефону" Binding="{Binding office_phone}"/>
                     <DataGridTextColumn Header="Адмін" Binding="{Binding admin}"/>
+                    <DataGridTextColumn Header="Кількість клієнтів" Binding="{Binding clients_count}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

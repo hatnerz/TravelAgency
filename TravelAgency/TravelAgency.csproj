@@ -65,20 +65,34 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DbAdapters\ClientsAdapter.cs" />
+    <Compile Include="DbAdapters\SubscriptionService.cs" />
+    <Compile Include="DbAdapters\TripsAdapter.cs" />
     <Compile Include="model\Client.cs" />
+    <Compile Include="model\TourSubscription.cs" />
     <Compile Include="model\Trip.cs" />
     <Compile Include="viewmodel\ClientViewModel.cs" />
+    <Compile Include="viewmodel\ManagerViewModel.cs" />
     <Compile Include="viewmodel\TourInfoViewModel.cs" />
     <Compile Include="viewmodel\TripSettingsViewModel.cs" />
     <Compile Include="viewmodel\ViewModelBase.cs" />
     <Compile Include="view\pages\ChooseClient.xaml.cs">
       <DependentUpon>ChooseClient.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\pages\Clients.xaml.cs">
+      <DependentUpon>Clients.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\pages\TripSettings.xaml.cs">
       <DependentUpon>TripSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\windows\AddClientWindow.xaml.cs">
+      <DependentUpon>AddClientWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\windows\ClientChooseWindow.xaml.cs">
       <DependentUpon>ClientChooseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\windows\ClientInfoWindow.xaml.cs">
+      <DependentUpon>ClientInfoWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\windows\TourBooking.xaml.cs">
       <DependentUpon>TourBooking.xaml</DependentUpon>
@@ -87,6 +101,10 @@
       <DependentUpon>TourInfo.xaml</DependentUpon>
     </Compile>
     <Page Include="view\pages\ChooseClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\pages\Clients.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -110,11 +128,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="view\windows\AddClientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\windows\AddTourWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\windows\ClientChooseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\windows\ClientInfoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
