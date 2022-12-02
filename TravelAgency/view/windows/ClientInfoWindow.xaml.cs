@@ -51,5 +51,12 @@ namespace TravelAgency.view.windows
                 }
             }
         }
+
+        private void formTicket_Click(object sender, RoutedEventArgs e)
+        {
+            DataRow selectedTripRow = ((DataRowView)clientTripsInfo.SelectedItem).Row;
+            Trip selectedTrip = new Trip(selectedTripRow);
+            selectedTrip.CreateTicket();
+        }
     }
 }

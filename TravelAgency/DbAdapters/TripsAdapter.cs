@@ -45,7 +45,7 @@ namespace TravelAgency.DbAdapters
             {
                 connection.Open();
                 string commandStr =
-                    "SELECT tours.tour_id, hotels.country, hotels.city, hotels.name, tours.departure_date, tours.arriving_date, trips.food_type, trips.plane_class " +
+                    "SELECT trips.registration_date, trips.trip_id, tours.tour_id, trips.client_id, hotels.country, hotels.city, hotels.name, tours.departure_date, tours.arriving_date, trips.food_type, trips.plane_class " +
                     "FROM hotels INNER JOIN tours on hotels.hotel_id = tours.hotel_id INNER JOIN trips ON tours.tour_id = trips.tour_id " +
                     "WHERE trips.client_id = @clientId";
                 SqlCommand command = new SqlCommand(commandStr, connection);

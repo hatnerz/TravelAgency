@@ -26,7 +26,7 @@
                     <RowDefinition Height="262*"/>
                 </Grid.RowDefinitions>
                 <Border BorderThickness="0,0,0,2" BorderBrush="Black">
-                    <TextBlock VerticalAlignment="Center" Grid.Row="0" Margin="15 10 0 0" Style="{StaticResource mainText}" HorizontalAlignment="Left">Введіть данні про клієнта</TextBlock>
+                    <TextBlock VerticalAlignment="Center" Grid.Row="0" Margin="15 10 0 0" Style="{StaticResource mainText}" HorizontalAlignment="Left">Введіть інформацію про бронювання</TextBlock>
                 </Border>
                 <Frame Name="tourBookingFrame" Grid.Row="1">
                     

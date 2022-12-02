@@ -40,7 +40,9 @@
                     <TextBlock Style="{StaticResource mainText2}" Text="{Binding MinPrice}" Name="minPriceTextBlock" DockPanel.Dock="Top" Margin="0,0,0,5"></TextBlock>
                     <TextBlock Style="{StaticResource mainText2}" Text="{Binding DepartureDate}" Name="departureDateTextBlock" DockPanel.Dock="Top" Margin="0,0,0,5"></TextBlock>
                     <TextBlock Style="{StaticResource mainText2}" Text="{Binding ArrivingDate}" Name="arrivingDateTextBlock" DockPanel.Dock="Top" Margin="0,0,0,5"></TextBlock>
-                    <Button Margin="30 0 30 20" DockPanel.Dock="Bottom" Name="goBookingButton" Click="goBookingButton_Click" VerticalContentAlignment="Center" VerticalAlignment="Bottom" Cursor="Hand">Перейти до оформлення</Button>
+                    
+                    <Button Margin="30 0 30 20" DockPanel.Dock="Bottom" Name="formTourMembers" VerticalContentAlignment="Center" VerticalAlignment="Bottom" Cursor="Hand" Click="formTourMembers_Click">Сформувати список учасників туру</Button>
+                    <Button Margin="30 0 30 10" DockPanel.Dock="Bottom" Name="goBookingButton" Click="goBookingButton_Click" VerticalContentAlignment="Center" VerticalAlignment="Bottom" Cursor="Hand">Перейти до оформлення</Button>
                 </DockPanel>
             </Grid>
         </Border>

@@ -156,5 +156,26 @@ namespace TravelAgency.DbAdapters
                 connection.Close();
             }
         }
+
+        public static Client GetClient(int id)
+        {
+            SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection"));
+            string commandStr = "SELECT * FROM clients WHERE client_id=" + id.ToString();
+            SqlCommand command = new SqlCommand(commandStr, connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            reader.Read();
+            Client client = new Client();
+            client.Id = (int)reader["client_id"];
+            client.FirstName = reader["first_name"].ToString();
+            client.LastName = reader["last_name"].ToString();
+            client.PatronymicName = reader["patronymic_name"].ToString();
+            client.PhoneNumber = reader["phone"].ToString();
+            client.Email = reader["email"].ToString();
+            client.Passport = reader["passport"].ToString();
+            if (reader["manager_id"].GetType() != typeof(DBNull)) client.Manager = new Manager((int)reader["manager_id"]);
+            connection.Close();
+            return client;
+        }
     }
 }

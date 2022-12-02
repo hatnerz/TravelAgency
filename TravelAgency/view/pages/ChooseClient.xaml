@@ -13,41 +13,46 @@
             <RowDefinition Height="58*"/>
             <RowDefinition Height="17*"/>
         </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Margin="0 0 0 10" Style="{StaticResource mainText}" HorizontalAlignment="Center">Інформація про клієнта</TextBlock>
+            <Grid Name="clientInfoGrid" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-        <Grid Name="clientInfoGrid" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="2*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+                <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="0" TextAlignment="Right" HorizontalAlignment="Right" VerticalAlignment="Center">Прізвище</TextBlock>
+                <TextBox Text="{Binding FirstName}" Name="firstNameTextBox" Grid.Column="1" Grid.Row="0" Width="180"/>
 
-            <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="0" TextAlignment="Right" HorizontalAlignment="Right" VerticalAlignment="Center">Прізвище</TextBlock>
-            <TextBox Text="{Binding FirstName}" Name="firstNameTextBox" Grid.Column="1" Grid.Row="0" Width="180"/>
+                <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="1" TextAlignment="Right" VerticalAlignment="Center">Ім'я</TextBlock>
+                <TextBox Text="{Binding LastName}" Name="lastNameTextBox" Grid.Column="1" Grid.Row="1"/>
 
-            <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="1" TextAlignment="Right" VerticalAlignment="Center">Ім'я</TextBlock>
-            <TextBox Text="{Binding LastName}" Name="lastNameTextBox" Grid.Column="1" Grid.Row="1"/>
+                <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="2" TextAlignment="Right" VerticalAlignment="Center">По-батькові</TextBlock>
+                <TextBox Text="{Binding PatronymicName}" Name="patronymicNameTextBox" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
 
-            <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="2" TextAlignment="Right" VerticalAlignment="Center">По-батькові</TextBlock>
-            <TextBox Text="{Binding PatronymicName}" Name="patronymicNameTextBox" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
+                <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="3" TextAlignment="Right" VerticalAlignment="Center">Номер телефону</TextBlock>
+                <TextBox Text="{Binding PhoneNumber}" Name="phonetTextBox" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
 
-            <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="3" TextAlignment="Right" VerticalAlignment="Center">Номер телефону</TextBlock>
-            <TextBox Text="{Binding PhoneNumber}" Name="phonetTextBox" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
+                <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="4" TextAlignment="Right" VerticalAlignment="Center">Електронна пошта</TextBlock>
+                <TextBox Text="{Binding Email}" Name="emailTextBox" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
 
-            <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="4" TextAlignment="Right" VerticalAlignment="Center">Електронна пошта</TextBlock>
-            <TextBox Text="{Binding Email}" Name="emailTextBox" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
+                <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="5" TextAlignment="Right" VerticalAlignment="Center">Паспорт</TextBlock>
+                <TextBox Text="{Binding Passport}" Name="passportTextBox" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
 
-            <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="5" TextAlignment="Right" VerticalAlignment="Center">Паспорт</TextBlock>
-            <TextBox Text="{Binding Passport}" Name="passportTextBox" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
+            </Grid>
+        </StackPanel>
+       
 
-        </Grid>
+        
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

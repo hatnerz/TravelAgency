@@ -13,41 +13,44 @@
             <RowDefinition Height="58*"/>
             <RowDefinition Height="17*"/>
         </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Margin="0 0 0 10" Style="{StaticResource mainText}" HorizontalAlignment="Center">Інформація про тур</TextBlock>
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-        <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="2*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+                <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="0" TextAlignment="Right" HorizontalAlignment="Right" VerticalAlignment="Center">Основна вартість</TextBlock>
+                <TextBox IsReadOnly="True" Text="{Binding BaseCost}"  Name="baseCostTextBox" Grid.Column="1" Grid.Row="0" Width="180"/>
 
-            <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="0" TextAlignment="Right" HorizontalAlignment="Right" VerticalAlignment="Center">Основна вартість</TextBlock>
-            <TextBox IsReadOnly="True" Text="{Binding BaseCost}"  Name="baseCostTextBox" Grid.Column="1" Grid.Row="0" Width="180"/>
+                <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="1" TextAlignment="Right" VerticalAlignment="Center">Клас у літаку</TextBlock>
+                <ComboBox SelectedItem="{Binding PlaneClass}" Name="planeClassComboBox" Grid.Column="1" Grid.Row="1"/>
 
-            <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="1" TextAlignment="Right" VerticalAlignment="Center">Клас у літаку</TextBlock>
-            <ComboBox SelectedItem="{Binding PlaneClass}" Name="planeClassComboBox" Grid.Column="1" Grid.Row="1"/>
+                <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="2" TextAlignment="Right" VerticalAlignment="Center">Вартість перельоту</TextBlock>
+                <TextBox IsReadOnly="True" Text="{Binding PlaneCost, Mode=OneWay}" Name="planeCostTextBox" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
 
-            <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="2" TextAlignment="Right" VerticalAlignment="Center">Вартість перельоту</TextBlock>
-            <TextBox IsReadOnly="True" Text="{Binding PlaneCost, Mode=OneWay}" Name="planeCostTextBox" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
+                <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="3" TextAlignment="Right" VerticalAlignment="Center">Тип харчування</TextBlock>
+                <ComboBox SelectedItem="{Binding FoodType}" Name="foodTypeComboBox" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
 
-            <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="3" TextAlignment="Right" VerticalAlignment="Center">Тип харчування</TextBlock>
-            <ComboBox SelectedItem="{Binding FoodType}" Name="foodTypeComboBox" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
+                <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="4" TextAlignment="Right" VerticalAlignment="Center">Вартість харчування</TextBlock>
+                <TextBox IsReadOnly="True" Text="{Binding FoodCost, Mode=OneWay}" Name="foodCostTextBox" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
 
-            <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="4" TextAlignment="Right" VerticalAlignment="Center">Вартість харчування</TextBlock>
-            <TextBox IsReadOnly="True" Text="{Binding FoodCost, Mode=OneWay}" Name="foodCostTextBox" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
+                <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="5" TextAlignment="Right" VerticalAlignment="Center">Загальна вартість</TextBlock>
+                <TextBox IsReadOnly="True" Text="{Binding FullCost, Mode=OneWay}" Name="fullCostTextBox" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
 
-            <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="5" TextAlignment="Right" VerticalAlignment="Center">Загальна вартість</TextBlock>
-            <TextBox IsReadOnly="True" Text="{Binding FullCost, Mode=OneWay}" Name="fullCostTextBox" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
+            </Grid>
+        </StackPanel>
 
-        </Grid>
         <Button Grid.Row="1" Name="setTripSettings" Margin="30 0 30 0" Cursor="Hand" Click="setTripSettings_Click">Підтвердити послуги</Button>
     </Grid>
 </Page>

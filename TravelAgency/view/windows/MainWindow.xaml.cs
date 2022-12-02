@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,6 +74,7 @@ namespace TravelAgency
         private DispatcherTimer _timer;
         public MainWindow(Manager currentUser)
         {
+            Directory.CreateDirectory("reports");
             InitializeComponent();
             this.currentUser = currentUser;
             this.ManagerViewModel = new ManagerViewModel(currentUser);

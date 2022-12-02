@@ -1,5 +1,8 @@
-﻿using System;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +36,11 @@ namespace TravelAgency.view.windows
         {
             TourBooking tourBooking = new TourBooking(SelectedTourViewModel.CurrentTour);
             tourBooking.ShowDialog();
+        }
+
+        private void formTourMembers_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedTourViewModel.CurrentTour.FormTourMembers();
         }
     }
 }

@@ -60,7 +60,7 @@ namespace TravelAgency.view.windows
                     using (SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection")))
                     {
                         connection.Open();
-                        DateTime departureDate = DateTime.Parse(arrivingDateTextBox.Text);
+                        DateTime departureDate = DateTime.Parse(departureDateTextBox.Text);
                         DateTime arrivingDate = DateTime.Parse(arrivingDateTextBox.Text);
                         decimal baseCost = Convert.ToDecimal(baseCostTextBox.Text);
                         decimal flightCost = Convert.ToDecimal(flightCostTextBox.Text);
