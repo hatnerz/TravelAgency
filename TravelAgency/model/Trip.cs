@@ -41,6 +41,8 @@ namespace TravelAgency.model
             Tour = new Tour((int)selectedTrip["tour_id"]);
             Client = ClientsAdapter.GetClient((int)selectedTrip["client_id"]);
         }
+        public Trip()
+        { }
 
         public void CreateTicket()
         {

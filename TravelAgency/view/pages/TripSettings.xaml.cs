@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TravelAgency.DbAdapters;
 using TravelAgency.model;
+using TravelAgency.view.windows;
 using TravelAgency.viewmodel;
 
 namespace TravelAgency.view.pages
@@ -22,9 +24,12 @@ namespace TravelAgency.view.pages
     /// </summary>
     public partial class TripSettings : Page
     {
+        bool change = false;
         public Trip FormedTrip;
         public Frame TourBookingFrame;
         public ChooseClient CurrentClientChoose;
+        public ChangeTripWindow CurrentClientChangeTripWindow;
+        TripSettingsViewModel tripSettingsViewModel;
         public TripSettings()
         {
             InitializeComponent();
@@ -32,7 +37,7 @@ namespace TravelAgency.view.pages
         public TripSettings(Trip formedTrip) : this()
         {
             FormedTrip = formedTrip;
-            TripSettingsViewModel tripSettingsViewModel = new TripSettingsViewModel(formedTrip);
+            tripSettingsViewModel = new TripSettingsViewModel(formedTrip);
             mainGrid.DataContext = tripSettingsViewModel;
             planeClassComboBox.ItemsSource = tripSettingsViewModel.PlaneClassesFull.Values;
             foodTypeComboBox.ItemsSource = tripSettingsViewModel.FoodTypeFull.Values;
@@ -42,10 +47,25 @@ namespace TravelAgency.view.pages
             TourBookingFrame = tourBookingFrame;
             CurrentClientChoose = currentClientChoose;
         }
+        public TripSettings(Trip formedTrip, bool change) : this(formedTrip)
+        {
+            this.change = change;
+        }
+        public TripSettings(Trip formedTrip, bool change, ChangeTripWindow changeTripWindow) : this(formedTrip,change)
+        {
+            CurrentClientChangeTripWindow = changeTripWindow;
+        }
 
         private void setTripSettings_Click(object sender, RoutedEventArgs e)
         {
-            TourBookingFrame.Navigate(CurrentClientChoose);
+            if (!change)
+                TourBookingFrame.Navigate(CurrentClientChoose);
+            else
+            {
+                TripsAdapter.UpdateTrip(tripSettingsViewModel.FormedTrip);
+                CurrentClientChangeTripWindow.Close();
+            }
+                
         }
     }
 }

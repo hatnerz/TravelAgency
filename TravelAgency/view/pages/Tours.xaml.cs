@@ -194,5 +194,18 @@ namespace TravelAgency.view.pages
             TourInfo tourInfoWindow = new TourInfo(new Tour(selectedTour));
             tourInfoWindow.ShowDialog();
         }
+
+        private void clearFiltres_Click(object sender, RoutedEventArgs e)
+        {
+            countryTextBox.Text = "";
+            cityTextBox.Text = "";
+            hotelTextBox.Text = "";
+            priceMinTextBox.Text = "";
+            priceMaxTextBox.Text = "";
+            departureMinTextBox.Text = "";
+            departureMaxTextBox.Text = "";
+            arrivingMinTextBox.Text = "";
+            arrivingMaxTextBox.Text = "";
+        }
     }
 }

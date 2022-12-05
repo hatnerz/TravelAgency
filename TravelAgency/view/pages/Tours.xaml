@@ -38,15 +38,24 @@
                     <StackPanel Margin="5" Grid.Row="0" Grid.Column="0" Name="generalInfoFilter">
                         <WrapPanel>
                             <TextBlock Style="{StaticResource mainText2}">Країна</TextBlock>
-                            <TextBox Name="countryTextBox">COUNTRY</TextBox>
+                            <TextBox Name="countryTextBox" MinWidth="100">
+                                <UIElement.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </UIElement.RenderTransform>
+                            </TextBox>
                         </WrapPanel>
                         <WrapPanel>
                             <TextBlock Style="{StaticResource mainText2}">Місто</TextBlock>
-                            <TextBox Name="cityTextBox">CITY</TextBox>
+                            <TextBox Name="cityTextBox" MinWidth="100"></TextBox>
                         </WrapPanel>
                         <WrapPanel>
                             <TextBlock Style="{StaticResource mainText2}">Готель</TextBlock>
-                            <TextBox Name="hotelTextBox">HOTEL</TextBox>
+                            <TextBox Name="hotelTextBox" MinWidth="100"></TextBox>
                         </WrapPanel>
                     </StackPanel>
 
@@ -56,11 +65,11 @@
                         </WrapPanel>
                         <WrapPanel>
                             <TextBlock Style="{StaticResource baseText}">Мінімальна</TextBlock>
-                            <TextBox Name="priceMinTextBox">MINPRICE</TextBox>
+                            <TextBox Name="priceMinTextBox" MinWidth="100"></TextBox>
                         </WrapPanel>
                         <WrapPanel>
                             <TextBlock Style="{StaticResource baseText}">Максимальна</TextBlock>
-                            <TextBox Name="priceMaxTextBox">MAXPRICE</TextBox>
+                            <TextBox Name="priceMaxTextBox" MinWidth="100"></TextBox>
                         </WrapPanel>
                     </StackPanel>
 
@@ -70,11 +79,11 @@
                         </WrapPanel>
                         <WrapPanel>
                             <TextBlock Style="{StaticResource baseText}">Від</TextBlock>
-                            <DatePicker Name="departureMinTextBox"></DatePicker>
+                            <DatePicker Name="departureMinTextBox" MinWidth="100"></DatePicker>
                         </WrapPanel>
                         <WrapPanel>
                             <TextBlock Style="{StaticResource baseText}">До</TextBlock>
-                            <DatePicker Name="departureMaxTextBox"></DatePicker>
+                            <DatePicker Name="departureMaxTextBox" MinWidth="100"></DatePicker>
                         </WrapPanel>
                     </StackPanel>
 
@@ -84,15 +93,15 @@
                         </WrapPanel>
                         <WrapPanel>
                             <TextBlock Style="{StaticResource baseText}">Від</TextBlock>
-                            <DatePicker Name="arrivingMinTextBox"></DatePicker>
+                            <DatePicker Name="arrivingMinTextBox" MinWidth="100"></DatePicker>
                         </WrapPanel>
                         <WrapPanel>
                             <TextBlock Style="{StaticResource baseText}">До</TextBlock>
-                            <DatePicker Name="arrivingMaxTextBox"></DatePicker>
+                            <DatePicker Name="arrivingMaxTextBox" MinWidth="100"></DatePicker>
                         </WrapPanel>
                     </StackPanel>
                     <Button Name="searchButton" Margin="10" Grid.Row="1" Grid.Column="3" Click="searchButton_Click">Пошук</Button>
-                    <Button Name="clearFiltres" Margin="10" Grid.Row="1" Grid.Column="2">Очистити фільтри</Button>
+                    <Button Name="clearFiltres" Margin="10" Grid.Row="1" Grid.Column="2" Click="clearFiltres_Click">Очистити фільтри</Button>
                 </Grid>
             </StackPanel>
             <DataGrid Name="toursDataGrid" Height="277" IsReadOnly="True" AutoGenerateColumns="False" CurrentCellChanged="toursDataGrid_CurrentCellChanged" MouseDoubleClick="toursDataGrid_MouseDoubleClick" >

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
+using TravelAgency.DbAdapters;
 
 namespace TravelAgency.model
 {
@@ -24,5 +27,22 @@ namespace TravelAgency.model
             MaxPrice = maxPrice;
             Client = client;
         }
+
+        public TourSubscription(DataRow subscriptionRow)
+        {
+            this.Id = (int)subscriptionRow["tour_subscription_id"];
+            RegistrationDate = (DateTime)subscriptionRow["registration_date"];
+            Country = subscriptionRow["country"].ToString();
+            City = subscriptionRow["city"].ToString();
+            MaxPrice = (decimal)subscriptionRow["max_price"];
+            Client = ClientsAdapter.GetClient((int)subscriptionRow["client_id"]);
+        }
+
+        public TourSubscription(Client client)
+        {
+            Client = client;
+        }
+        public TourSubscription()
+        { }
     }
 }

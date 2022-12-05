@@ -80,6 +80,7 @@ namespace TravelAgency.model
             ToursAdapter.FillClientsByTour(this, tourMembers);
             PdfPTable table = new PdfPTable(tourMembers.Columns.Count);
             table.SetWidths(new float[] { 0.5f, 3, 3, 3, 2, 2});
+
             //Добавим в таблицу общий заголовок
             PdfPCell cell = new PdfPCell(new Phrase("Тур: " + this.Id + "  " + this.Hotel.Name + ", " + this.Hotel.Country + ", " + this.Hotel.City, font));
             cell.Colspan = tourMembers.Columns.Count;

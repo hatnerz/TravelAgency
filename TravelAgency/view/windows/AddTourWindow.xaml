@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravelAgency.view.windows"
         mc:Ignorable="d"
-        Title="AddTourWindow" Height="450" Width="800">
+        Title="AddTourWindow" Height="550" Width="800">
     <Grid Background="AliceBlue">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -36,6 +36,7 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
                         <RowDefinition Height="2*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -54,8 +55,13 @@
                     <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="4" TextAlignment="Right" VerticalAlignment="Center">Базова вартість перельоту</TextBlock>
                     <TextBox Name="flightCostTextBox" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
                     <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="5" TextAlignment="Right" VerticalAlignment="Center">Готель</TextBlock>
+                    
                     <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="5" Name="hotelPicker" Grid.Column="1" Grid.Row="5" Content="Обрати"  VerticalAlignment="Center" ButtonBase.Click="hotelPicker_Click" Cursor="Hand"/>
-                    <Button Name="addTourButton" Padding="0" Margin="15" Grid.Row="6" Grid.ColumnSpan="2" Cursor="Hand" Click="addTourButton_Click">Додати тур</Button>
+                    <Button Name="addTourButton" Padding="0" Margin="15" Grid.Row="7" Grid.ColumnSpan="2" Cursor="Hand" Click="addTourButton_Click">Додати тур</Button>
+                    
+                    <CheckBox Name="isForSubscribersChechBox" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center"/>
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="6" TextAlignment="Right" VerticalAlignment="Center">Відправити тур підписникам</TextBlock>
+
                 </Grid>
             </Grid>
         </Border>

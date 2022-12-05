@@ -22,7 +22,9 @@
             <TextBox Name="querryTextBox" Text="SELECT" Style="{StaticResource MaterialDesignOutlinedTextBox}" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" materialDesign:HintAssist.Hint="Введіть запит" Height="116"></TextBox>
             <StackPanel Margin="15" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Name="doSqlButton" Margin="0,0,15,0" Click="doSqlButton_Click" Cursor="Hand">Виконати запит</Button>
-                <Button Name="clearButton" Margin="15,0,0,0" Cursor="Hand" Click="clearButton_Click">Очистити поле</Button>
+                <Button Name="clearButton" Margin="15,0,15,0" Cursor="Hand" Click="clearButton_Click">Очистити поле</Button>
+                <Button Name="checkSubscriptions" Margin="15,0,0,0" Cursor="Hand" Click="checkSubscriptions_Click">Перевірити підписки</Button>
+
             </StackPanel>
             <DataGrid Name="resultDataGrid" Height="235">
                 

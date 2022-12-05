@@ -30,6 +30,7 @@ namespace TravelAgency.model
             Passport = passport;
             Manager = manager;
         }
+
         public Client(DataRow selectedClient)
         {
             this.Id = (int)selectedClient["client_id"];

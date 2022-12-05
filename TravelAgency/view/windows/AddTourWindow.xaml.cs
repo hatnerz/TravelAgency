@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using TravelAgency.DbAdapters;
 using TravelAgency.model;
 
 namespace TravelAgency.view.windows
@@ -75,6 +76,11 @@ namespace TravelAgency.view.windows
                         command.Parameters.Add(new SqlParameter("@hotelId", hotelId));
                         command.ExecuteNonQuery();
                         this.Close();
+                    }
+
+                    if(isForSubscribersChechBox.IsChecked == true)
+                    {
+                        SubscriptionService.SendSubscriptionsByTour(new Tour(ToursAdapter.GetLastId()));
                     }
                 }
                 catch(Exception ex)

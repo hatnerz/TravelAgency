@@ -14,6 +14,18 @@ namespace TravelAgency.DbAdapters
 {
     internal static class ToursAdapter
     {
+        static public int GetLastId()
+        {
+            string sqlExpression = "SELECT CONVERT(int, IDENT_CURRENT('tours'))";
+            using (SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection")))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                var a = command.ExecuteScalar();
+                return (int)a;
+            }
+        }
+
         static public void FillClientsByTour(Tour tour, DataTable toursDataTable)
         {
             using (SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection")))

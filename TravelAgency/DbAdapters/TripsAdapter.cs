@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using TravelAgency.model;
+using TravelAgency.view.pages;
 
 namespace TravelAgency.DbAdapters
 {
@@ -39,6 +40,30 @@ namespace TravelAgency.DbAdapters
             }
         }
 
+        static public void InsertTripWithoutSettings(Trip trip)
+        {
+            try
+            {
+                string sqlExpression =
+               "INSERT INTO trips (registration_date, tour_id, client_id) " +
+               "VALUES (@registrationDate, @tourId, @clientId)";
+                using (SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection")))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(sqlExpression, connection);
+                    command.Parameters.Add(new SqlParameter("@registrationDate", trip.RegistrationDate));
+                    command.Parameters.Add(new SqlParameter("@tourId", trip.Tour.Id));
+                    command.Parameters.Add(new SqlParameter("@clientId", trip.Client.Id));
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
         static public void FillTripsByClient(Client client, DataTable tripsDataTable)
         {
             using (SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection")))
@@ -56,5 +81,38 @@ namespace TravelAgency.DbAdapters
                 connection.Close();
             }
         }
+
+        static public void UpdateTrip(Trip trip)
+        {
+            try
+            {
+                string sqlExpression =
+              "UPDATE trips SET registration_date = @registrationDate, food_type = @foodType, plane_class = @planeClass, tour_id = @tourId, client_id = @clientId " +
+              "WHERE trip_id = @tripId";
+                using (SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection")))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(sqlExpression, connection);
+                    command.Parameters.Add(new SqlParameter("@registrationDate", trip.RegistrationDate));
+
+                    if (trip.FoodType == null) command.Parameters.Add(new SqlParameter("@foodType", DBNull.Value));
+                    else command.Parameters.Add(new SqlParameter("@foodType", trip.FoodType));
+
+                    if (trip.PlaneClass == null) command.Parameters.Add(new SqlParameter("@planeClass", DBNull.Value));
+                    else command.Parameters.Add(new SqlParameter("@planeClass", trip.PlaneClass));
+
+                    command.Parameters.Add(new SqlParameter("@clientId", trip.Client.Id));
+                    command.Parameters.Add(new SqlParameter("@tourId", trip.Tour.Id));
+
+                    command.Parameters.Add(new SqlParameter("@tripId", trip.Id));
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
     }
 }

@@ -177,5 +177,35 @@ namespace TravelAgency.DbAdapters
             connection.Close();
             return client;
         }
+
+
+        static public void UpdateClient(Client client)
+        {
+            try
+            {
+                string sqlExpression =
+              "UPDATE clients SET first_name = @firstName, last_name = @lastName, patronymic_name = @patronymicName, phone = @phone, email = @email, passport = @passport, manager_id = @managerId " +
+              "WHERE client_id = @clientId";
+                using (SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection")))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(sqlExpression, connection);
+                    command.Parameters.Add(new SqlParameter("@firstName", client.FirstName));
+                    command.Parameters.Add(new SqlParameter("@lastName", client.LastName));
+                    command.Parameters.Add(new SqlParameter("@patronymicName", client.PatronymicName));
+                    command.Parameters.Add(new SqlParameter("@phone", client.PhoneNumber));
+                    command.Parameters.Add(new SqlParameter("@email", client.Email));
+                    command.Parameters.Add(new SqlParameter("@passport", client.Passport));
+                    command.Parameters.Add(new SqlParameter("@clientId", client.Id));
+                    if(client.Manager == null) command.Parameters.Add(new SqlParameter("@managerId", DBNull.Value));
+                    else command.Parameters.Add(new SqlParameter("@managerId", client.Manager.Id));
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
     }
 }

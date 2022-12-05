@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TravelAgency.DbAdapters;
 
 namespace TravelAgency.view.pages
 {
@@ -48,6 +49,11 @@ namespace TravelAgency.view.pages
         private void clearButton_Click(object sender, RoutedEventArgs e)
         {
             querryTextBox.Text = "SELECT" ;
+        }
+
+        private void checkSubscriptions_Click(object sender, RoutedEventArgs e)
+        {
+            SubscriptionService.CheckSubsctiptionAccepts();
         }
     }
 }

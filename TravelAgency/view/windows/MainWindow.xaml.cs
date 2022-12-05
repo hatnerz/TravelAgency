@@ -1,4 +1,6 @@
-﻿using System;
+﻿using iTextSharp.text.pdf.parser;
+using iTextSharp.text.pdf.qrcode;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,6 +18,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using TravelAgency.view.pages;
 using TravelAgency.viewmodel;
+//using static System.Net.Mime.MediaTypeNames;
 
 namespace TravelAgency
 {
@@ -80,6 +83,14 @@ namespace TravelAgency
             this.ManagerViewModel = new ManagerViewModel(currentUser);
             mainGrid.DataContext = ManagerViewModel;
             Application.Current.Properties.Add("currentUser", currentUser);
+            if (!File.Exists("email_check.dat"))
+            {
+                using (StreamWriter writer = new StreamWriter("email_check.dat", false))
+                {
+                    writer.WriteLine(DateTime.Now);
+                }
+            }
+            
             _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
             {
                 timeBlock.Text = DateTime.Now.ToString("HH:mm:ss\ndd.MM.yyyy");
