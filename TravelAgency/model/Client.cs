@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelAgency.DbAdapters;
 
 namespace TravelAgency.model
 {
@@ -17,6 +18,7 @@ namespace TravelAgency.model
         public string Email { get; set; }
         public string Passport { get; set; }
         public Manager Manager { get; set; }
+
         public Client() { }
 
         public Client(int id, string firstName, string lastName, string patronymicName, string phoneNumber, string email, string passport, Manager manager)
@@ -40,7 +42,8 @@ namespace TravelAgency.model
             PhoneNumber = selectedClient["phone"].ToString();
             Email = selectedClient["email"].ToString();
             Passport = selectedClient["passport"].ToString();
-            if(selectedClient["manager_id"].GetType() != typeof(DBNull)) Manager = new Manager((int)selectedClient["manager_id"]);
+            if (selectedClient["manager_id"].GetType() != typeof(DBNull)) 
+               Manager = ManagersAdapter.GetManager((int)selectedClient["manager_id"]);
         }
     }
 }

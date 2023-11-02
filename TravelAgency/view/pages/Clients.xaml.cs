@@ -35,16 +35,20 @@ namespace TravelAgency.view.pages
 
         private void clientsDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Client selectedClient = new Client(((DataRowView)clientsDataGrid.SelectedItem).Row);
-            ClientInfoWindow clientInfoWindow = new ClientInfoWindow(selectedClient);
-            clientInfoWindow.ShowDialog();
-            ClientsAdapter.FillClientsByManager((Manager)Application.Current.Properties["currentUser"], clientsViewDataTable);
+            if (clientsDataGrid.SelectedItem != null)
+            {
+                Client selectedClient = new Client(((DataRowView)clientsDataGrid.SelectedItem).Row);
+                ClientInfoWindow clientInfoWindow = new ClientInfoWindow(selectedClient);
+                clientInfoWindow.ShowDialog();
+                ClientsAdapter.FillClientsByManager((Manager)Application.Current.Properties["currentUser"], clientsViewDataTable);
+            }
         }
 
         private void addClientButton_Click(object sender, RoutedEventArgs e)
         {
             AddClientWindow addClientWindow = new AddClientWindow();
             addClientWindow.ShowDialog();
+            ClientsAdapter.FillClientsByManager((Manager)Application.Current.Properties["currentUser"], clientsViewDataTable);
         }
 
         private void searchButton_Click(object sender, RoutedEventArgs e)

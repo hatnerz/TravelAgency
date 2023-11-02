@@ -9,12 +9,14 @@ using TravelAgency.model;
 using MaterialDesignThemes.Wpf;
 using System.Reflection;
 using TravelAgency.view.pages;
+using iTextSharp.text.pdf;
+using System.Windows;
 
 namespace TravelAgency.DbAdapters
 {
     internal static class ToursAdapter
     {
-        static public int GetLastId()
+        public static int GetLastId()
         {
             string sqlExpression = "SELECT CONVERT(int, IDENT_CURRENT('tours'))";
             using (SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection")))
@@ -26,7 +28,36 @@ namespace TravelAgency.DbAdapters
             }
         }
 
-        static public void FillClientsByTour(Tour tour, DataTable toursDataTable)
+        public static Tour GetTour(int id)
+        {
+            try
+            {
+                Tour tour = new Tour();
+                SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection"));
+                string commandStr = "SELECT * FROM tours WHERE tour_id=" + id.ToString();
+                SqlCommand command = new SqlCommand(commandStr, connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+                tour.Id = (int)reader["tour_id"];
+                tour.DepartureDate = (DateTime)reader["departure_date"];
+                tour.ArrivingDate = (DateTime)reader["arriving_date"];
+                tour.BaseCost = (decimal)reader["base_cost"];
+                tour.FlightCost = (decimal)reader["flight_cost"];
+                tour.FoodCost = (decimal)reader["food_cost"];
+                if (reader["hotel_id"].GetType() != typeof(DBNull))
+                    tour.Hotel = HotelsAdapter.GetHotel((int)reader["hotel_id"]);
+                connection.Close();
+                return tour;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return null;
+        }
+
+        public static void FillClientsByTour(Tour tour, DataTable toursDataTable)
         {
             using (SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection")))
             {

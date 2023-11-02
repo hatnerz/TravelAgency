@@ -1,0 +1,30 @@
+﻿<Window x:Class="TravelAgency.view.windows.ServicePickerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravelAgency.view.windows"
+        mc:Ignorable="d"
+        Title="ServicePickerWindow" Height="450" Width="800">
+    <Grid Name="mainGrid" Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="180*"/>
+            <RowDefinition Height="35*"/>
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="58" Width="400">
+            <TextBlock HorizontalAlignment="Center" Style="{StaticResource header1}">Оберіть послуги готелю</TextBlock>
+        </StackPanel>
+        <ListBox Grid.Row="1" Name="ServicesListBox">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox Tag="{Binding service.Id}" IsChecked="{Binding status}"></CheckBox>
+                        <TextBlock Text="{Binding service.Name}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Grid.Row="2" Name="ConfirmServices" Click="ConfirmServices_Click">Підтвердити</Button>
+    </Grid>
+</Window>

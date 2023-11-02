@@ -27,7 +27,7 @@ namespace TravelAgency
     /// </summary>
     public partial class MainWindow : Window
     {
-        public enum Pages { MainPage, DataBaseAdmin, Tours, Staff, Clients }
+        public enum Pages { MainPage, DataBaseAdmin, Tours, Staff, Clients, Hotels }
         static Pages currentPage;
         private void pageNavigate(Pages page)
         {
@@ -65,6 +65,10 @@ namespace TravelAgency
                     case Pages.Clients:
                         changeButtons();
                         mainFrame.Navigate(new Clients());
+                        break;
+                    case Pages.Hotels:
+                        changeButtons();
+                        mainFrame.Navigate(new Hotels());
                         break;
                 }
                 
@@ -130,6 +134,11 @@ namespace TravelAgency
         private void clientsPageButton_Click(object sender, RoutedEventArgs e)
         {
             pageNavigate(Pages.Clients);
+        }
+
+        private void hotelsPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            pageNavigate(Pages.Hotels);
         }
     }
 }

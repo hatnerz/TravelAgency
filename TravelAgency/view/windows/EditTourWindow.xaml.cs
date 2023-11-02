@@ -31,7 +31,10 @@ namespace TravelAgency.view.windows
             baseCostTextBox.Text = EditableTour.BaseCost.ToString();
             foodCostTextBox.Text = EditableTour.FoodCost.ToString();
             flightCostTextBox.Text = EditableTour.FlightCost.ToString();
-            hotelPicker.Content = editableTour.Hotel.Name;
+            if (editableTour.Hotel != null)
+            {
+                hotelPicker.Content = editableTour.Hotel.Name;
+            }
         }
 
         private void hotelPicker_Click(object sender, RoutedEventArgs e)

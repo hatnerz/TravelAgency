@@ -23,12 +23,22 @@
             <StackPanel Margin="15" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Name="doSqlButton" Margin="0,0,15,0" Click="doSqlButton_Click" Cursor="Hand">Виконати запит</Button>
                 <Button Name="clearButton" Margin="15,0,15,0" Cursor="Hand" Click="clearButton_Click">Очистити поле</Button>
-                <Button Name="checkSubscriptions" Margin="15,0,0,0" Cursor="Hand" Click="checkSubscriptions_Click">Перевірити підписки</Button>
 
             </StackPanel>
-            <DataGrid Name="resultDataGrid" Height="235">
+            
+            <DataGrid IsReadOnly="True" Name="resultDataGrid" Height="235">
                 
             </DataGrid>
+            <UniformGrid Margin="0 15 0 0" Columns="3">
+                <Button Name="topHotelsButton" Margin="0,0,15,0" Cursor="Hand" Click="topHotelsButton_Click">Найуспішніші готелі</Button>
+                <Button Name="clientListButton" Margin="10,0,10,0" Cursor="Hand" Click="clientListButton_Click">Список клієнтів з кількістю турів</Button>
+                <Button Name="topServicesButton" Margin="15,0,0,0" Cursor="Hand" Click="topServicesButton_Click">Найпоширеніші послуги</Button>
+                
+            </UniformGrid>
+
+            <StackPanel Margin="0 15 0 0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Name="checkSubscriptionsButton" Cursor="Hand" Click="checkSubscriptionsButton_Click">Перевірити підписки</Button>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

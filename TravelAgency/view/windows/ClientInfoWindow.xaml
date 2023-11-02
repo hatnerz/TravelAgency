@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravelAgency.view.windows"
         mc:Ignorable="d"
-        Title="ClientInfoWindow" Height="450" Width="800">
+        Title="ClientInfoWindow" Height="500" Width="800">
     <Grid Background="AliceBlue" Name="mainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="17*"/>
             <RowDefinition Height="58*"/>
             <RowDefinition Height="58*"/>
-            <RowDefinition Height="17*"/>
+            <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
 
         <TextBlock Style="{StaticResource header1}" HorizontalAlignment="Center" VerticalAlignment="Center">Інформація про клієнта</TextBlock>
@@ -106,13 +106,18 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
             <Button Grid.Column="2" Name="addSubscription" Margin="5 0 5 0" Cursor="Hand" Click="addSubscription_Click">Оформити підписку</Button>
             <Button Grid.Column="3" Name="deleteSubscription" Margin="5 0 5 0" Cursor="Hand" Click="deleteSubscription_Click">Видалити підписку</Button>
             <Button Grid.Column="0" Name="formTicket" Margin="5 0 5 0" Cursor="Hand" Click="formTicket_Click">Сформувати путівку</Button>
             <Button Grid.Column="1" Name="changeTripButton" Margin="5 0 5 0" Cursor="Hand" Click="changeTrip_Click">Змінити бронь туру</Button>
+            <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Name="addResponceButton" Margin="5 0 5 0" Cursor="Hand" Click="addResponceButton_Click">Додати відгук на тур</Button>
         </Grid>
     </Grid>
 </Window>

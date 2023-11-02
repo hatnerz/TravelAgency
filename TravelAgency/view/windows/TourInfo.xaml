@@ -36,7 +36,7 @@
                     </Border>
                     <TextBlock Style="{StaticResource mainText2}" Text="{Binding Stars}" Name="starsTextBlock" DockPanel.Dock="Top" Margin="0,0,0,5" ></TextBlock>
                     <TextBlock Style="{StaticResource mainText2}" Text="{Binding RoomNumber}" Name="roomNumberTextBlock" DockPanel.Dock="Top" Margin="0,0,0,5"></TextBlock>
-                    <TextBlock Style="{StaticResource mainText2}" DockPanel.Dock="Top" Margin="0,0,0,5">Послуги готелю: ___________</TextBlock>
+                    <!--<TextBlock Style="{StaticResource mainText2}" DockPanel.Dock="Top" Margin="0,0,0,5">Послуги готелю: ___________</TextBlock>-->
                     <TextBlock Style="{StaticResource mainText2}" Text="{Binding MinPrice}" Name="minPriceTextBlock" DockPanel.Dock="Top" Margin="0,0,0,5"></TextBlock>
                     <TextBlock Style="{StaticResource mainText2}" Text="{Binding DepartureDate}" Name="departureDateTextBlock" DockPanel.Dock="Top" Margin="0,0,0,5"></TextBlock>
                     <TextBlock Style="{StaticResource mainText2}" Text="{Binding ArrivingDate}" Name="arrivingDateTextBlock" DockPanel.Dock="Top" Margin="0,0,0,5"></TextBlock>

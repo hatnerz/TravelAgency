@@ -18,6 +18,7 @@ using TravelAgency.view.windows;
 using System.Threading;
 using System.Windows.Controls.Primitives;
 using TravelAgency.model;
+using TravelAgency.DbAdapters;
 
 namespace TravelAgency.view.pages
 {
@@ -41,6 +42,12 @@ namespace TravelAgency.view.pages
             oda.Fill(toursViewDataTable);
             toursDataGrid.ItemsSource = toursViewDataTable.AsDataView();
             connection.Close();
+            if (((Manager)App.Current.Properties["currentUser"]).Admin == false)
+            {
+                addTourButton.IsEnabled = false;
+                editTourButton.IsEnabled = false;
+                deleteTourButton.IsEnabled = false;
+            }
         }
 
         private void addTourButton_Click(object sender, RoutedEventArgs e)
@@ -56,7 +63,7 @@ namespace TravelAgency.view.pages
             if(toursDataGrid.SelectedIndex!=-1)
             {
                 int selectedTourId = (int)((DataRowView)toursDataGrid.SelectedItem)["tour_id"];
-                Tour editableTour = new Tour(selectedTourId);
+                Tour editableTour = ToursAdapter.GetTour(selectedTourId);
                 EditTourWindow editTourWindow = new EditTourWindow(editableTour);
                 editTourWindow.ShowDialog();
                 toursViewDataTable.Clear();
@@ -190,9 +197,12 @@ namespace TravelAgency.view.pages
 
         private void toursDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            DataRow selectedTour = ((DataRowView)toursDataGrid.SelectedItem).Row;
-            TourInfo tourInfoWindow = new TourInfo(new Tour(selectedTour));
-            tourInfoWindow.ShowDialog();
+            if (toursDataGrid.SelectedItem != null)
+            {
+                DataRow selectedTour = ((DataRowView)toursDataGrid.SelectedItem).Row;
+                TourInfo tourInfoWindow = new TourInfo(new Tour(selectedTour));
+                tourInfoWindow.ShowDialog();
+            }
         }
 
         private void clearFiltres_Click(object sender, RoutedEventArgs e)

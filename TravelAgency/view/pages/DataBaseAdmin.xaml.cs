@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TravelAgency.DbAdapters;
+using TravelAgency.view.windows;
 
 namespace TravelAgency.view.pages
 {
@@ -48,12 +49,36 @@ namespace TravelAgency.view.pages
 
         private void clearButton_Click(object sender, RoutedEventArgs e)
         {
-            querryTextBox.Text = "SELECT" ;
+            querryTextBox.Text = "SELECT";
         }
 
-        private void checkSubscriptions_Click(object sender, RoutedEventArgs e)
+        private void checkSubscriptionsButton_Click(object sender, RoutedEventArgs e)
         {
             SubscriptionService.CheckSubsctiptionAccepts();
+        }
+
+        private void topHotelsButton_Click(object sender, RoutedEventArgs e)
+        {
+            DataTable dataTable = new DataTable();
+            HotelsAdapter.FillTopHotels(dataTable);
+            StatisticsWindow statisticsWindow = new StatisticsWindow(dataTable);
+            statisticsWindow.Show();
+        }
+
+        private void clientListButton_Click(object sender, RoutedEventArgs e)
+        {
+            DataTable dataTable = new DataTable();
+            ClientsAdapter.FillClientsWithTripsCount(dataTable);
+            StatisticsWindow statisticsWindow = new StatisticsWindow(dataTable);
+            statisticsWindow.Show();
+        }
+
+        private void topServicesButton_Click(object sender, RoutedEventArgs e)
+        {
+            DataTable dataTable = new DataTable();
+            HotelsAdapter.FillTopServices(dataTable);
+            StatisticsWindow statisticsWindow = new StatisticsWindow(dataTable);
+            statisticsWindow.Show();
         }
     }
 }

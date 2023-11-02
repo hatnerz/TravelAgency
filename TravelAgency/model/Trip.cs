@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using iTextSharp;
@@ -38,7 +39,7 @@ namespace TravelAgency.model
             RegistrationDate = (DateTime)selectedTrip["registration_date"];
             FoodType = selectedTrip["food_type"].ToString();
             PlaneClass = selectedTrip["plane_class"].ToString();
-            Tour = new Tour((int)selectedTrip["tour_id"]);
+            Tour = ToursAdapter.GetTour((int)selectedTrip["tour_id"]);
             Client = ClientsAdapter.GetClient((int)selectedTrip["client_id"]);
         }
         public Trip()
@@ -88,16 +89,18 @@ namespace TravelAgency.model
             cell = new PdfPCell(new Phrase("Дата оформлення: " + RegistrationDate, font)) { Colspan = 2};
             table.AddCell(cell);
 
+            cell = new PdfPCell(new Phrase("Сформовано: " + DateTime.Now, font));
+            cell.Colspan = 2;
+            cell.HorizontalAlignment = 1;
+
+            cell.Border = 0;
+            cell.Padding = 15;
+            table.AddCell(cell);
+
             document.Add(table);
             document.Close();
-            //Добавим в таблицу общий заголовок
-            //PdfPCell cell = new PdfPCell(new Phrase("БД " + fileName + ", таблица №" + (i + 1), font));
 
-            //cell.Colspan = MyDataSet.Tables[i].Columns.Count;
-            //cell.HorizontalAlignment = 1;
-            //Убираем границу первой ячейки, чтобы балы как заголовок
-            //cell.Border = 0;
-            //table.AddCell(cell);
+            MessageBox.Show("Путівку успішно сформовано");
         }
     }
 }

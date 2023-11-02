@@ -42,7 +42,7 @@ namespace TravelAgency.model
         {
             Client = client;
         }
-        public TourSubscription()
-        { }
+
+        public TourSubscription() { }
     }
 }

@@ -1,0 +1,82 @@
+﻿<Window x:Class="TravelAgency.view.windows.AddHotelWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravelAgency.view.windows"
+        mc:Ignorable="d"
+        Title="AddHotelWindow" Height="600" Width="800">
+    <Grid Background="AliceBlue">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="113*"/>
+            <RowDefinition Height="334*"/>
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="3">
+            <TextBlock HorizontalAlignment="Center" Style="{StaticResource header1}">Додавання готелю</TextBlock>
+        </StackPanel>
+        <Border Grid.Row="1" Margin="0 0 0 25" Grid.Column="1" Style="{StaticResource block}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="262*"/>
+                    <RowDefinition Height="55*"/>
+                </Grid.RowDefinitions>
+                <Border BorderThickness="0,0,0,2" BorderBrush="Black">
+                    <TextBlock VerticalAlignment="Center" Grid.Row="0" Margin="15 10 0 0" Style="{StaticResource mainText}" HorizontalAlignment="Left">Введіть дані про готель</TextBlock>
+                </Border>
+                <Grid Grid.Row="1" Name="hotelInfoGrid" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="0" TextAlignment="Right" HorizontalAlignment="Right" VerticalAlignment="Center">Назва</TextBlock>
+                    <TextBox Text="{Binding Name}" Name="nameTextBox" Grid.Column="1" Grid.Row="0" Width="180"/>
+
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="1" TextAlignment="Right" HorizontalAlignment="Right" VerticalAlignment="Center">Країна</TextBlock>
+                    <TextBox Text="{Binding Country}" Name="countryTextBox" Grid.Column="1" Grid.Row="1" Width="180"/>
+
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="2" TextAlignment="Right" VerticalAlignment="Center">Місто</TextBlock>
+                    <TextBox Text="{Binding City}" Name="cityTextBox" Grid.Column="1" Grid.Row="2"/>
+
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="3" TextAlignment="Right" VerticalAlignment="Center">Кількість зірок</TextBlock>
+                    <TextBox Text="{Binding Stars}" Name="starsTextBox" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
+
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="4" TextAlignment="Right" VerticalAlignment="Center">Кількість номерів</TextBlock>
+                    <TextBox Text="{Binding RoomNumber}" Name="roomNumberTextBox" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
+
+
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="5" TextAlignment="Right" VerticalAlignment="Center">Опис</TextBlock>
+                    <TextBox Text="{Binding Description}" Name="descriptionTextBox" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
+
+                    <TextBlock Padding="5" Style="{StaticResource mainText2}" Grid.Column="0" Grid.Row="6" TextAlignment="Right" VerticalAlignment="Center">Послуги</TextBlock>
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="5" Name="servicePicker" Grid.Column="1" Grid.Row="6" Content="Обрати"  VerticalAlignment="Center" Cursor="Hand" Click="servicePicker_Click"/>
+                    <TextBox IsReadOnly="True" Name="ServicesTextBox" Text="{Binding StringView,Mode=OneWay}" Padding="5" Grid.ColumnSpan="2" Grid.Row="7" VerticalAlignment="Center" TextAlignment="Center"/>
+
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.ColumnSpan="2" Name="addHotel" Margin="30 0 30 0" Cursor="Hand" VerticalAlignment="Top" Click="addHotel_Click">Додати новий готель</Button>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

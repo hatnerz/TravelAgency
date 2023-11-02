@@ -87,7 +87,7 @@ namespace TravelAgency.view.windows
             }
             else
             {
-                MessageBox.Show("Оберіть тур для формування квитку.");
+                MessageBox.Show("Оберіть тур для формування путівки");
             }
         }
 
@@ -105,7 +105,7 @@ namespace TravelAgency.view.windows
                 if (MessageBox.Show("Ви точно хочете видалити обрану підписку?", "Підтвердження", MessageBoxButton.YesNo)
                     == MessageBoxResult.Yes)
                 {
-                    int selectedSubscriptionId = (int)((DataRowView)subscriptionsInfo.SelectedItem)["subscription_id"];
+                    int selectedSubscriptionId = (int)((DataRowView)subscriptionsInfo.SelectedItem)["tour_subscription_id"];
                     SubscriptionService.DeleteSubscription(selectedSubscriptionId);
                     SubscriptionService.FillSubscriptionsByClient(clientViewModel.CurrentClient,subscriptionDataTable);
                 }
@@ -164,9 +164,27 @@ namespace TravelAgency.view.windows
             }
             else
             {
-                MessageBox.Show("Оберіть тур для формування квитку.");
+                MessageBox.Show("Оберіть тур для внесення змін");
             }
             
+        }
+
+        private void addResponceButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (clientTripsInfo.SelectedItem != null)
+            {
+                DataRow selectedTripRow = ((DataRowView)clientTripsInfo.SelectedItem).Row;
+                Trip selectedTrip = new Trip(selectedTripRow);
+                Responce responce = new Responce();
+                responce.Hotel = selectedTrip.Tour.Hotel;
+                responce.Trip = selectedTrip;
+                AddResponceWindow addResponceWindow = new AddResponceWindow(responce);
+                addResponceWindow.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Оберіть тур зі списку");
+            }
         }
     }
 }

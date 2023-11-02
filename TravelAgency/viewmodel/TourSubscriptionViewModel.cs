@@ -41,7 +41,6 @@ namespace TravelAgency.viewmodel
             set => CurrentTourSubscription.MaxPrice = value;
         }
 
-
         public TourSubscriptionViewModel(TourSubscription currentTourSubscription)
         {
             CurrentTourSubscription = currentTourSubscription;

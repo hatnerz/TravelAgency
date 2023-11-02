@@ -14,7 +14,7 @@
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
         <TextBlock Style="{StaticResource header1}" HorizontalAlignment="Center">Клієнти</TextBlock>
-        <DockPanel Grid.Row="1">
+        <DockPanel Margin="20" Grid.Row="1">
             <TextBlock DockPanel.Dock="Top" Style="{StaticResource mainText}" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap">
                 Список ваших клієнтів та клієнтів без менеджера
             </TextBlock>

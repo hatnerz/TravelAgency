@@ -16,6 +16,9 @@ namespace TravelAgency
         public int Id { get; set; }
         public string login { get; set; }
         public string password { get; set; }
+        public string OfficePhone { get; set; }
+        public bool Admin { get; set; }
+
         private string firstName;
         private string lastName;
         private string patronymicName;
@@ -47,8 +50,15 @@ namespace TravelAgency
                 OnPropertyChanged("GetFullName");
             }
         }
-        public bool Admin { get; set; }
-        public string OfficePhone { get; set; }
+
+        public string GetFullName
+        {
+            get
+            {
+                return FirstName + " " + LastName + " " + PatronymicName;
+            }
+        }
+
         public Manager(int id, string login, string password, string firstName, string lastName, string patronymicName, bool admin, string officePhone)
         {
             this.Id = id;
@@ -73,33 +83,7 @@ namespace TravelAgency
             Admin = (bool)selectedManager["admin"];
         }
 
-        public Manager(int id)
-        {
-            SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection"));
-            string commandStr = "SELECT * FROM managers WHERE manager_id=" + id.ToString();
-            SqlCommand command = new SqlCommand(commandStr, connection);
-            connection.Open();
-            SqlDataReader reader = command.ExecuteReader();
-            reader.Read();
-            this.Id = (int)reader["manager_id"];
-            login = reader["login"].ToString();
-            password = reader["password"].ToString();
-            FirstName = reader["first_name"].ToString();
-            LastName = reader["last_name"].ToString();
-            PatronymicName = reader["patronymic_name"].ToString();
-            OfficePhone = reader["office_phone"].ToString();
-            Admin = (bool)reader["admin"];
-            connection.Close();
-        }
-
-
-        public string GetFullName
-        {
-            get
-            {
-                return FirstName + " " + LastName + " " + PatronymicName;
-            }
-        }
+        public Manager() { }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

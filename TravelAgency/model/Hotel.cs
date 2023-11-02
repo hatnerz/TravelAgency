@@ -10,13 +10,15 @@ namespace TravelAgency.model
 {
     public class Hotel
     {
-        public int id { get; }
+        public int id { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
         public string Name { get; set; }
         public byte Stars { get; set; }
         public string Description { get; set; }
         public short RoomNumber { get; set; }
+
+        public Hotel() { }
 
         public Hotel(int id, string city, string country, string name, byte stars, string description, short roomNumber)
         {
@@ -40,22 +42,5 @@ namespace TravelAgency.model
             Name = selectedHotel["name"].ToString();
         }
         
-        public Hotel(int id)
-        {
-            SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection"));
-            string commandStr = "SELECT * FROM hotels WHERE hotel_id=" + id.ToString();
-            SqlCommand command = new SqlCommand(commandStr, connection);
-            connection.Open();
-            SqlDataReader reader = command.ExecuteReader();
-            reader.Read();
-            this.id = (int)reader["hotel_id"];
-            Country = reader["country"].ToString();
-            City = reader["city"].ToString();
-            Stars = (byte)reader["stars"];
-            Description = reader["description"].ToString();
-            RoomNumber = (short)reader["room_number"];
-            Name = reader["name"].ToString();
-            connection.Close();
-        }
     }
 }

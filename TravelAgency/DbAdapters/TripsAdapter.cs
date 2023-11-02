@@ -13,9 +13,9 @@ using TravelAgency.view.pages;
 
 namespace TravelAgency.DbAdapters
 {
-    internal class TripsAdapter
+    internal static class TripsAdapter
     {
-        static public void InsertTrip(Trip trip)
+        public static void InsertTrip(Trip trip)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace TravelAgency.DbAdapters
             }
         }
 
-        static public void InsertTripWithoutSettings(Trip trip)
+        public static void InsertTripWithoutSettings(Trip trip)
         {
             try
             {
@@ -63,8 +63,7 @@ namespace TravelAgency.DbAdapters
             }
         }
 
-
-        static public void FillTripsByClient(Client client, DataTable tripsDataTable)
+        public static void FillTripsByClient(Client client, DataTable tripsDataTable)
         {
             using (SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection")))
             {
@@ -82,7 +81,7 @@ namespace TravelAgency.DbAdapters
             }
         }
 
-        static public void UpdateTrip(Trip trip)
+        public static void UpdateTrip(Trip trip)
         {
             try
             {

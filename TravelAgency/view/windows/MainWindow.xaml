@@ -29,7 +29,7 @@
             <StackPanel Name="menuButtons">
                 <Button Name="mainPageButton" Margin="5" Style="{StaticResource MaterialDesignRaisedButton}" Cursor="Hand" Content="Головна" Click="mainPageButton_Click" Tag="MainPage" />
                 <Button Name="toursPageButton" Margin="5" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand" Content="Тури" Click="toursPageButton_Click" Tag="Tours"/>
-                <Button Name="hotelsPageButton" Margin="5" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand" Content="Готелі"/>
+                <Button Name="hotelsPageButton" Margin="5" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand" Content="Готелі" Tag="Hotels" Click="hotelsPageButton_Click"/>
                 <Button Name="clientsPageButton" Margin="5" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand" Content="Клієнти" Click="clientsPageButton_Click" Tag="Clients"/>
                 <Button Name="employeesPageButton" Margin="5" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand" Content="Співробітники" IsEnabled="False" Click="employeesPageButton_Click" Tag="Staff"/>
                 <Button Name="dataBasePageButton" Margin="5" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand" Content="База даних" IsEnabled="False" Click="dataBasePageButton_Click" Tag="DataBaseAdmin"/>

@@ -18,6 +18,7 @@ using TravelAgency.view.windows;
 using System.Text.RegularExpressions;
 using System.Threading;
 using TravelAgency.model;
+using TravelAgency.DbAdapters;
 
 namespace TravelAgency.view.pages
 {
@@ -51,11 +52,18 @@ namespace TravelAgency.view.pages
 
         private void staffDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if (staffDataGrid.SelectedItem != null)
+            {
+                DataRowView selectedManager = (DataRowView)staffDataGrid.SelectedItem;
+                EmployeeInfoWindow employeeInfoWindow = new EmployeeInfoWindow(new Manager(selectedManager));
+                employeeInfoWindow.ShowDialog();
+                UpdataDataTable();
+            }
+        }
 
-            DataRowView selectedManager = (DataRowView)staffDataGrid.SelectedItem;
-            EmployeeInfoWindow employeeInfoWindow = new EmployeeInfoWindow(new Manager(selectedManager));
-            employeeInfoWindow.ShowDialog();
-            UpdataDataTable();
+        private void searchButton_Click(object sender, RoutedEventArgs e)
+        {
+            ManagersAdapter.FillManagersWithFilters(staffViewDataTable, firstName.Text, lastName.Text, patronymicName.Text);
         }
     }
 }

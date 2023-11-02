@@ -80,7 +80,7 @@ namespace TravelAgency.view.windows
 
                     if(isForSubscribersChechBox.IsChecked == true)
                     {
-                        SubscriptionService.SendSubscriptionsByTour(new Tour(ToursAdapter.GetLastId()));
+                        SubscriptionService.SendSubscriptionsByTour(ToursAdapter.GetTour(ToursAdapter.GetLastId()));
                     }
                 }
                 catch(Exception ex)

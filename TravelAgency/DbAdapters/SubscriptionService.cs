@@ -22,7 +22,7 @@ namespace TravelAgency.DbAdapters
 {
     internal static class SubscriptionService
     {
-        static public int GetLastId()
+        public static int GetLastId()
         {
             string sqlExpression = "SELECT CONVERT(int, IDENT_CURRENT('tour_subscription'))";
             using (SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection")))
@@ -33,7 +33,6 @@ namespace TravelAgency.DbAdapters
                 return (int)a;
             }
         }
-
 
         public static TourSubscription GetTourSubscription(int id)
         {
@@ -54,7 +53,7 @@ namespace TravelAgency.DbAdapters
             return tourSubscription;
         }
 
-        static public void FillSubscriptionsByClient(Client client, DataTable subscriptionDataTable)
+        public static void FillSubscriptionsByClient(Client client, DataTable subscriptionDataTable)
         {
             string sqlExpression = "SELECT * FROM tour_subscription WHERE client_id = " + client.Id;
             using (SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection")))
@@ -68,7 +67,7 @@ namespace TravelAgency.DbAdapters
             }
         }
 
-        static public void FillSubscriptions(DataTable subscriptionDataTable)
+        public static void FillSubscriptions(DataTable subscriptionDataTable)
         {
             string sqlExpression = "SELECT * FROM tour_subscription";
             using (SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection")))
@@ -82,7 +81,7 @@ namespace TravelAgency.DbAdapters
             }
         }
 
-        static public void InsertSubscription(TourSubscription tourSubscription)
+        public static void InsertSubscription(TourSubscription tourSubscription)
         {
             try
             {
@@ -108,7 +107,7 @@ namespace TravelAgency.DbAdapters
             }
         }
 
-        static public void DeleteSubscription(TourSubscription tourSubscription)
+        public static void DeleteSubscription(TourSubscription tourSubscription)
         {
             SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection"));
             string commandStr = "DELETE FROM tour_subscription WHERE tour_subscription_id = " + tourSubscription.Id;
@@ -117,7 +116,7 @@ namespace TravelAgency.DbAdapters
             command.ExecuteNonQuery();
         }
 
-        static public void DeleteSubscription(int tourSubscriptionId)
+        public static void DeleteSubscription(int tourSubscriptionId)
         {
             SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection"));
             string commandStr = "DELETE FROM tour_subscription WHERE tour_subscription_id = " + tourSubscriptionId;
@@ -126,14 +125,14 @@ namespace TravelAgency.DbAdapters
             command.ExecuteNonQuery();
         }
 
-        static public void SendSubscriptionToClient(TourSubscription tourSubscription)
+        public static void SendSubscriptionToClient(TourSubscription tourSubscription)
         {
             MailAddress fromAdress = new MailAddress("tour_agency_nure@outlook.com", "TourAgency");
             MailAddress toAdress = new MailAddress(tourSubscription.Client.Email);
             MailMessage message = new MailMessage(fromAdress, toAdress);
             message.Subject = "Підписка на тур №" + tourSubscription.Id;
             message.Body = "Шановний клієнт!\nВи щойно оформили підписку на тур за вказаними критеріями:\nКраїна: " + tourSubscription.Country +
-            "\nМісто: " + tourSubscription.City + "\nМаксимальна вартість: " + (tourSubscription.MaxPrice <= 0 ? tourSubscription.MaxPrice.ToString() : "без обмежень") + "\nЯк тільки тур за вказаними критеріями заявиться, ми обов'язково вас проінформуємо!";
+            "\nМісто: " + tourSubscription.City + "\nМаксимальна вартість: " + (tourSubscription.MaxPrice <= 0 ? "без обмежень" : tourSubscription.MaxPrice.ToString()) + "\nЯк тільки тур за вказаними критеріями заявиться, ми обов'язково вас проінформуємо!";
             SmtpClient smtpClient = new SmtpClient();
             smtpClient.Host = "smtp-mail.outlook.com";
             smtpClient.Port = 587;
@@ -141,11 +140,11 @@ namespace TravelAgency.DbAdapters
             smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtpClient.UseDefaultCredentials = true;
             smtpClient.Credentials = new NetworkCredential(fromAdress.Address, "rdf234bddDf");
-
             smtpClient.Send(message);
+            InsertSendingLetter(tourSubscription.Id, "info");
         }
 
-        static public void SendSuccessToClient(Trip trip)
+        public static void SendSuccessToClient(Trip trip)
         {
             MailAddress fromAdress = new MailAddress("tour_agency_nure@outlook.com", "TourAgency");
             MailAddress toAdress = new MailAddress(trip.Client.Email);
@@ -159,12 +158,10 @@ namespace TravelAgency.DbAdapters
             smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtpClient.UseDefaultCredentials = true;
             smtpClient.Credentials = new NetworkCredential(fromAdress.Address, "rdf234bddDf");
-
             smtpClient.Send(message);
         }
 
-
-        static public void SendSubscriptionsByTour(Tour tour)
+        public static void SendSubscriptionsByTour(Tour tour)
         {
             DataTable subscriptionDataTable = new DataTable();
             FillSubscriptions(subscriptionDataTable);
@@ -183,23 +180,24 @@ namespace TravelAgency.DbAdapters
                 TourSubscription tourSubscription = new TourSubscription(subscriptionRow);
                 if((tourSubscription.City == "" || tourSubscription.City == tour.Hotel.City) &&
                     (tourSubscription.Country == "" || tourSubscription.Country == tour.Hotel.Country) &&
-                    (tourSubscription.MaxPrice <= tour.MinPrice || tourSubscription.MaxPrice <= 0))
+                    (tourSubscription.MaxPrice >= tour.MinPrice || tourSubscription.MaxPrice <= 0))
                 {
-                    MailAddress toAdress = new MailAddress("vlcvik03@gmail.com");
+                    MailAddress toAdress = new MailAddress(tourSubscription.Client.Email);
                     MailMessage message = new MailMessage(fromAdress, toAdress);
                     message.Body = "Шановний клієнт. Ви оформлювали підписку на тур (№"+tourSubscription.Id+") за критеріями" +
-                        "\nКраїна: " + tourSubscription.Country + "\nМісто: " + tourSubscription.City + "\nМаксимальна вартість: " + (tourSubscription.MaxPrice <= 0 ? tourSubscription.MaxPrice.ToString() : "без обмежень") + "\n" +
+                        "\nКраїна: " + tourSubscription.Country + "\nМісто: " + tourSubscription.City + "\nМаксимальна вартість: " + (tourSubscription.MaxPrice > 0 ? tourSubscription.MaxPrice.ToString() : "без обмежень") + "\n" +
                         "Такий тур було знайдено!\n\nПропонуємо вам подорож:\n Готель: " + tour.Hotel.Name + ". " + tour.Hotel.City + ", " + tour.Hotel.Country +
                         "\nВартість: від " + tour.MinPrice + "\nІдентифікатор туру: " + tour.Id + "\n\nДля підтвердження бронювання відправте лист з текстом \"Підтверджую\". Для оплати та обрання послуг для туру вам треба буде звернутися до менеджера.";
                     message.Subject = "Тур за підпискою знайдено";
                     smtpClient.Send(message);
                     count++;
+                    InsertSendingLetter(tourSubscription.Id, "tour");
                 }
             }
             MessageBox.Show("Було відправлено " + count + " електронних листів за підписками.");
         }
 
-        static public void CheckSubsctiptionAccepts()
+        public static void CheckSubsctiptionAccepts()
         {
             int count = 0;
             using (var imapClient = new ImapClient())
@@ -241,7 +239,7 @@ namespace TravelAgency.DbAdapters
                                     i++;
                                     currentSymbol = text[tourIdIndex + i + "Ідентифікатор туру: ".Length];
                                 }
-                                Tour tour = new Tour(Convert.ToInt32(tourIdStr));
+                                Tour tour = ToursAdapter.GetTour(Convert.ToInt32(tourIdStr));
                                 int subscriptionIdIndex = text.LastIndexOf("тур (№");
                                 string subscriptionIdStr = "";
                                 currentSymbol = text[subscriptionIdIndex + "тур (№".Length];
@@ -260,6 +258,7 @@ namespace TravelAgency.DbAdapters
                                 TripsAdapter.InsertTripWithoutSettings(trip);
                                 SendSuccessToClient(trip);
                                 count++;
+                                InsertSendingLetter(tourSubscription.Id, "accept");
                             }
                         }
                     }
@@ -272,5 +271,21 @@ namespace TravelAgency.DbAdapters
 
             }
         }
+
+        public static void InsertSendingLetter(int subscriptionId, string status)
+        {
+            string sqlExpression =
+               "INSERT INTO subscription_letters (tour_subscription_id, letter_type) " +
+               "VALUES (@id, @status)";
+            using (SqlConnection connection = new SqlConnection(App.GetConnectionStringByName("DefaultConnection")))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                command.Parameters.Add(new SqlParameter("@id", subscriptionId));
+                command.Parameters.Add(new SqlParameter("@status", status));
+                command.ExecuteNonQuery();
+            }
+        }
+
     }
 }

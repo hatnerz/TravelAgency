@@ -95,15 +95,24 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DbAdapters\ClientsAdapter.cs" />
+    <Compile Include="DbAdapters\HotelsAdapter.cs" />
+    <Compile Include="DbAdapters\ManagersAdapter.cs" />
+    <Compile Include="DbAdapters\ResponceAdapter.cs" />
     <Compile Include="DbAdapters\SubscriptionService.cs" />
     <Compile Include="DbAdapters\ToursAdapter.cs" />
     <Compile Include="DbAdapters\TripsAdapter.cs" />
     <Compile Include="model\Client.cs" />
+    <Compile Include="model\Responce.cs" />
+    <Compile Include="model\Service.cs" />
     <Compile Include="model\TourConstants.cs" />
     <Compile Include="model\TourSubscription.cs" />
     <Compile Include="model\Trip.cs" />
     <Compile Include="viewmodel\ClientViewModel.cs" />
+    <Compile Include="viewmodel\HotelViewModel.cs" />
     <Compile Include="viewmodel\ManagerViewModel.cs" />
+    <Compile Include="viewmodel\ResponceViewModel.cs" />
+    <Compile Include="viewmodel\ServicePickerViewModel.cs" />
+    <Compile Include="viewmodel\ServicesListViewModel.cs" />
     <Compile Include="viewmodel\TourInfoViewModel.cs" />
     <Compile Include="viewmodel\TourSubscriptionViewModel.cs" />
     <Compile Include="viewmodel\TripSettingsViewModel.cs" />
@@ -114,11 +123,20 @@
     <Compile Include="view\pages\Clients.xaml.cs">
       <DependentUpon>Clients.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\pages\Hotels.xaml.cs">
+      <DependentUpon>Hotels.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\pages\TripSettings.xaml.cs">
       <DependentUpon>TripSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\windows\AddClientWindow.xaml.cs">
       <DependentUpon>AddClientWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\windows\AddHotelWindow.xaml.cs">
+      <DependentUpon>AddHotelWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\windows\AddResponceWindow.xaml.cs">
+      <DependentUpon>AddResponceWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\windows\AddSubscription.xaml.cs">
       <DependentUpon>AddSubscription.xaml</DependentUpon>
@@ -131,6 +149,15 @@
     </Compile>
     <Compile Include="view\windows\ClientInfoWindow.xaml.cs">
       <DependentUpon>ClientInfoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\windows\EditHotelWindow.xaml.cs">
+      <DependentUpon>EditHotelWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\windows\ServicePickerWindow.xaml.cs">
+      <DependentUpon>ServicePickerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\windows\StatisticsWindow.xaml.cs">
+      <DependentUpon>StatisticsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\windows\TourBooking.xaml.cs">
       <DependentUpon>TourBooking.xaml</DependentUpon>
@@ -147,6 +174,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\pages\DataBaseAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\pages\Hotels.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,6 +201,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="view\windows\AddHotelWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\windows\AddResponceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\windows\AddSubscription.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -187,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\windows\ClientInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\windows\EditHotelWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -247,6 +290,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="view\windows\ServicePickerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\windows\StatisticsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\windows\TourBooking.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
